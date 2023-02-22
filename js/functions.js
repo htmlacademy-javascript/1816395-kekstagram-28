@@ -1,15 +1,11 @@
 function getTestString(string,stringLength){
-  let strResult;
-  string.length <= stringLength ? strResult = true : strResult = false;
-  return strResult;
+  return string.length >= stringLength;
 }
 
 function getTestPolindrom(str){
-  let testResult;
   str = str.toLowerCase().replaceAll(' ','');
   const reversStr = str.split('').reverse().join('');
-  str === reversStr ? testResult = true : testResult = false;
-  return testResult;
+  return str === reversStr;
 }
 
 function getCutNumber(data){
@@ -74,3 +70,8 @@ function getAddStr (str,minLength,addStr){
 }
 
 //  про соблюдение критериев страшно даже подумать...Т_Т
+getTestString('test',5);
+getTestPolindrom('test');
+getCutNumber('test');
+getAddStr('test');
+
