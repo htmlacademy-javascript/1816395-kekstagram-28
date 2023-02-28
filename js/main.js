@@ -1,6 +1,8 @@
 const EMPLOYES_COUNT = 25;
 const COUNT_AVATAR = 6;
 const MAXIMUM_MESSAGES = 2;
+const MAX_LIKES = 200;
+const MIN_LIKES = 15;
 const DESCRIPTION_INTRODUCION = [
   'На фотографии мы видим…',
   'При первом взгляде на фотографию становится очевидным, что…',
@@ -94,8 +96,6 @@ function getDescription(){
 
 
 function getLikes(){
-  const MAX_LIKES = 200;
-  const MIN_LIKES = 15;
   return function generateLikes(){
     let likes = getRandom(MAX_LIKES);
     if(likes > MIN_LIKES){
