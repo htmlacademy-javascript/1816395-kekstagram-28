@@ -176,5 +176,5 @@ function getName(){
   };
 }
 
-const Emploes = getEmployes(EMPLOYES_COUNT);
-console.log(Emploes)
+getEmployes(EMPLOYES_COUNT);
+
