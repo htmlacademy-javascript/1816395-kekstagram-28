@@ -1,4 +1,35 @@
 const EMPLOYES_COUNT = 25;
+const COUNT_AVATAR = 6;
+const MAXIMUM_MESSAGES = 2;
+const DESCRIPTION_INTRODUCION = [
+  'На фотографии мы видим…',
+  'При первом взгляде на фотографию становится очевидным, что…',
+  'Предложенная для описания фотография интересна тем, что...',
+  'Если внимательно посмотреть на снимок, то…'];
+const DESCRIPTION_BASE = [
+  'На переднем плане изображены…',
+  'Если внимательно посмотреть на изображение, то…',
+  'Композиция снимка весьма интересна, потому что…',
+  'Выражения лиц у героев фотографии говорят о том, что…',
+  'Фото несёт в себе определённое настроение:…'];
+const DESCRIPTION_END = [
+  'Завершая описание, хочется отметить…',
+  'Своё описание хочется закончить…',
+  'ельзя не увидеть талант фотографа, который сумел…',
+];
+const MESSAGES_ARREY = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+];
+const NAMES_ARREY = [
+  'Ника','Таисия','Михаил', 'Евгения','Василиса','Мария','Алиса','Илья','Иван',
+  'Милана','Надежда','Ксения', 'Амина', 'Николай', 'Кирилл', 'Алексей', 'Руслан',
+  'Олег', 'Степан', 'Ульяна', 'Мирослава', 'Андрей', 'Василий', 'Марк', 'София'
+];
 
 function getEmployes(countEmployes){
   const Employes = [];
@@ -53,50 +84,35 @@ function getUrl(urlCount){
   };
 }
 
+
 function getDescription(){
-  const descriptionA = [
-    'На фотографии мы видим…',
-    'При первом взгляде на фотографию становится очевидным, что…',
-    'Предложенная для описания фотография интересна тем, что...',
-    'Если внимательно посмотреть на снимок, то…'];
-  const descriptionB = [
-    'На переднем плане изображены…',
-    'Если внимательно посмотреть на изображение, то…',
-    'Композиция снимка весьма интересна, потому что…',
-    'Выражения лиц у героев фотографии говорят о том, что…',
-    'Фото несёт в себе определённое настроение:…'];
-  const descriptionC = [
-    'Завершая описание, хочется отметить…',
-    'Своё описание хочется закончить…',
-    'ельзя не увидеть талант фотографа, который сумел…',
-  ];
   return function generateDescription(){
-    return `${descriptionA[getRandom(descriptionA.length - 1)]} ${descriptionB[getRandom(descriptionB.length - 1)]} ${descriptionC[getRandom(descriptionC.length - 1)]}`;
+    return `${DESCRIPTION_INTRODUCION[getRandom(DESCRIPTION_INTRODUCION.length - 1)]} ${DESCRIPTION_BASE[getRandom(DESCRIPTION_BASE.length - 1)]} ${DESCRIPTION_END[getRandom(DESCRIPTION_END.length - 1)]}`;
 
   };
 }
 
+
 function getLikes(){
-  const MaxLikes = 200;
-  const MinLikes = 15;
+  const MAX_LIKES = 200;
+  const MIN_LIKES = 15;
   return function generateLikes(){
-    let likes = getRandom(MaxLikes);
-    if(likes > MinLikes){
+    let likes = getRandom(MAX_LIKES);
+    if(likes > MIN_LIKES){
       return likes;
     } else {
-      likes = getRandom(MaxLikes);
+      likes = getRandom(MAX_LIKES);
     }
   };
 }
 
-function getComments(){
 
-  const MaxCountComments = 10;
+function getComments(){
+  const MAX_COUNT_COMMENTS = 10;
   const comments = [];
   const id = getRandomUnicId();
-
   return function getComment(){
-    for (let i = 0; i <= getRandom(MaxCountComments);i++){
+    for (let i = 0; i <= getRandom(MAX_COUNT_COMMENTS);i++){
       const NewComment = {};
       const Avatar = getAvatar();
       const Message = getMessage();
@@ -112,6 +128,7 @@ function getComments(){
 
 }
 
+
 function getRandomUnicId(){
   const unicId = [];
   return function generateRandomeUnicId(){
@@ -125,13 +142,12 @@ function getRandomUnicId(){
   };
 }
 
+
 function getAvatar(){
-  const CountAvatars = 6;
   const Avatars = [];
-  for (let i = 0; i < CountAvatars;i++){
+  for (let i = 0; i < COUNT_AVATAR;i++){
     const urlAvatar = `.img/Avatar-${i}.svg`;
     Avatars.push(urlAvatar);
-
   }
   return function generateAvatars(){
     const Avatar = Avatars[getRandom(Avatars.length)];
@@ -139,22 +155,14 @@ function getAvatar(){
   };
 }
 
+
 function getMessage(){
-  const MaximumMessages = 2;
-  const MessajesData = [
-    'Всё отлично!',
-    'В целом всё неплохо. Но не всё.',
-    'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-    'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-    'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-    'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
-  ];
   return function generateMessage(){
     const Messages = [];
-    for (let i = 0; i < MaximumMessages;i++){
-      let newMessage = MessajesData[getRandom(MessajesData.length)];
+    for (let i = 0; i < MAXIMUM_MESSAGES;i++){
+      let newMessage = MESSAGES_ARREY[getRandom(MESSAGES_ARREY.length)];
       if(Messages.includes(newMessage)){
-        newMessage = MessajesData[getRandom(MessajesData.length)];
+        newMessage = MESSAGES_ARREY[getRandom(MESSAGES_ARREY.length)];
       } else {
         Messages.push(newMessage);
 
@@ -165,14 +173,10 @@ function getMessage(){
   };
 }
 
+
 function getName(){
-  const Names = [
-    'Ника','Таисия','Михаил', 'Евгения','Василиса','Мария','Алиса','Илья','Иван',
-    'Милана','Надежда','Ксения', 'Амина', 'Николай', 'Кирилл', 'Алексей', 'Руслан',
-    'Олег', 'Степан', 'Ульяна', 'Мирослава', 'Андрей', 'Василий', 'Марк', 'София'
-  ];
   return function generateName(){
-    return Names[getRandom(Names.length)];
+    return NAMES_ARREY[getRandom(NAMES_ARREY.length)];
   };
 }
 
