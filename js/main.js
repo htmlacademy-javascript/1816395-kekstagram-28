@@ -161,7 +161,6 @@ function getMessage(){
       }
     }
 
-    console.log(Messages)
     return Messages;
   };
 }
