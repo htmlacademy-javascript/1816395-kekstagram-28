@@ -120,10 +120,8 @@ const getMessage = ()=> function generateMessage(){
       newMessage = MESSAGES_ARRAY[getRandom(MESSAGES_ARRAY.length)];
     } else {
       Messages.push(newMessage);
-
     }
   }
-
   return Messages.join(' ');
 };
 
