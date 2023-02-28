@@ -3,6 +3,7 @@ const COUNT_AVATAR = 6;
 const MAXIMUM_MESSAGES = 2;
 const MAX_LIKES = 200;
 const MIN_LIKES = 15;
+const MAX_COUNT_UNIK_ID = 10000;
 const DESCRIPTION_INTRODUCION = [
   'На фотографии мы видим…',
   'При первом взгляде на фотографию становится очевидным, что…',
@@ -19,7 +20,7 @@ const DESCRIPTION_END = [
   'Своё описание хочется закончить…',
   'ельзя не увидеть талант фотографа, который сумел…',
 ];
-const MESSAGES_ARREY = [
+const MESSAGES_ARRAY = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -27,7 +28,7 @@ const MESSAGES_ARREY = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-const NAMES_ARREY = [
+const NAMES_ARRAY = [
   'Ника','Таисия','Михаил', 'Евгения','Василиса','Мария','Алиса','Илья','Иван',
   'Милана','Надежда','Ксения', 'Амина', 'Николай', 'Кирилл', 'Алексей', 'Руслан',
   'Олег', 'Степан', 'Ульяна', 'Мирослава', 'Андрей', 'Василий', 'Марк', 'София'
@@ -53,7 +54,7 @@ function getEmployes(countEmployes){
 }
 
 
-function getRandom (max = Math.random() * 10000){
+function getRandom (max = Math.random() * MAX_COUNT_UNIK_ID){
   // console.log(max)
   return Math.floor(Math.random() * max);
 }
@@ -160,9 +161,9 @@ function getMessage(){
   return function generateMessage(){
     const Messages = [];
     for (let i = 0; i < MAXIMUM_MESSAGES;i++){
-      let newMessage = MESSAGES_ARREY[getRandom(MESSAGES_ARREY.length)];
+      let newMessage = MESSAGES_ARRAY[getRandom(MESSAGES_ARRAY.length)];
       if(Messages.includes(newMessage)){
-        newMessage = MESSAGES_ARREY[getRandom(MESSAGES_ARREY.length)];
+        newMessage = MESSAGES_ARRAY[getRandom(MESSAGES_ARRAY.length)];
       } else {
         Messages.push(newMessage);
 
@@ -176,7 +177,7 @@ function getMessage(){
 
 function getName(){
   return function generateName(){
-    return NAMES_ARREY[getRandom(NAMES_ARREY.length)];
+    return NAMES_ARRAY[getRandom(NAMES_ARRAY.length)];
   };
 }
 
