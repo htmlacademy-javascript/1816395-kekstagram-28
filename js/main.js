@@ -4,7 +4,6 @@ function getEmployes(countEmployes){
   const Employes = [];
   const id = getId();
   const url = getUrl(countEmployes);
-  const idComment = getRandomUnicId();
   for (let i = 0; i < countEmployes; i++){
     const newEmploee = {};
     const description = getDescription();
@@ -14,7 +13,7 @@ function getEmployes(countEmployes){
     newEmploee.url = url();
     newEmploee.description = description();
     newEmploee.likes = likes();
-    newEmploee.comments = comments(idComment);
+    newEmploee.comments = comments();
     Employes.push(newEmploee);
   }
   return Employes;
@@ -90,11 +89,11 @@ function getLikes(){
   };
 }
 
-function getComments(unicId){
+function getComments(){
 
   const MaxCountComments = 10;
   const comments = [];
-  const id = unicId();
+  const id = getRandomUnicId();
 
   return function getComment(){
     for (let i = 0; i <= getRandom(MaxCountComments);i++){
@@ -120,7 +119,7 @@ function getRandomUnicId(){
     if (unicId.includes(newId)){
       newId = getRandom();
     } else {
-      newId.push(newId);
+      unicId.push(newId);
     }
     return newId;
   };
