@@ -4,23 +4,24 @@ function getEmployes(countEmployes){
   const Employes = [];
   const id = getId();
   const url = getUrl(countEmployes);
+  const idComment = getRandomUnicId();
   for (let i = 0; i < countEmployes; i++){
     const newEmploee = {};
     const description = getDescription();
     const likes = getLikes();
-    // const comments = getComments;
+    const comments = getComments();
     newEmploee.id = id();
     newEmploee.url = url();
     newEmploee.description = description();
     newEmploee.likes = likes();
-    // newEmploee.comments = comments();
+    newEmploee.comments = comments(idComment);
     Employes.push(newEmploee);
   }
   return Employes;
 }
 
 
-function getRandom (max){
+function getRandom (max = Math.random() * 10000){
   // console.log(max)
   return Math.floor(Math.random() * max);
 }
@@ -89,23 +90,89 @@ function getLikes(){
   };
 }
 
-function getComments(){
+function getComments(unicId){
+
   const MaxCountComments = 10;
   const comments = [];
-  function getComment(){
-    for (const i = 0; i <= getRandom(MaxCountComments);i++){
-      const newComment = {};
-      newComment.id = getRandomUnicId();
-      newComment.avatar = getAvatar();
-      newComment.message = getMessage();
-      newComment.name = getName();
-      comments.push(newComment);
+  const id = unicId();
+
+  return function getComment(){
+    for (let i = 0; i <= getRandom(MaxCountComments);i++){
+      const NewComment = {};
+      const Avatar = getAvatar();
+      const Message = getMessage();
+      const Name = getName();
+      NewComment.id = id();
+      NewComment.Avatar = Avatar();
+      NewComment.Message = Message();
+      NewComment.name = Name();
+      comments.push(NewComment);
     }
     return comments;
-  }
-  getComment();
-  return comments;
+  };
+
 }
 
+function getRandomUnicId(){
+  const unicId = [];
+  return function generateRandomeUnicId(){
+    let newId = getRandom();
+    if (unicId.includes(newId)){
+      newId = getRandom();
+    } else {
+      newId.push(newId);
+    }
+    return newId;
+  };
+}
+
+function getAvatar(){
+  const CountAvatars = 6;
+  const Avatars = [];
+  for (let i = 0; i < CountAvatars;i++){
+    const urlAvatar = `.img/Avatar-${i}.svg`;
+    Avatars.push(urlAvatar);
+
+  }
+  return function generateAvatars(){
+    const Avatar = Avatars[getRandom(Avatars.length)];
+    return Avatar;
+  };
+}
+
+function getMessage(){
+  const MaximumMessages = 2;
+  const MessajesData = [
+    'Всё отлично!',
+    'В целом всё неплохо. Но не всё.',
+    'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+    'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+    'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+    'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+  ];
+  return function generateMessage(){
+    const Messages = [];
+    for (let i = 0; i < MaximumMessages;i++){
+      let newMessage = getRandom(MessajesData.length);
+      if(Messages.includes(newMessage)){
+        newMessage = getRandom(MessajesData.length);
+      } else {
+        Messages.push(newMessage);
+      }
+    }
+    return Messages;
+  };
+}
+
+function getName(){
+  const Names = [
+    'Ника','Таисия','Михаил', 'Евгения','Василиса','Мария','Алиса','Илья','Иван',
+    'Милана','Надежда','Ксения', 'Амина', 'Николай', 'Кирилл', 'Алексей', 'Руслан',
+    'Олег', 'Степан', 'Ульяна', 'Мирослава', 'Андрей', 'Василий', 'Марк', 'София'
+  ];
+  return function generateName(){
+    return Names[getRandom(Names.length)];
+  };
+}
 
 getEmployes(EMPLOYES_COUNT);
