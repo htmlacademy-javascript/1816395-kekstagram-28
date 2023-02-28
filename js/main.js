@@ -152,13 +152,16 @@ function getMessage(){
   return function generateMessage(){
     const Messages = [];
     for (let i = 0; i < MaximumMessages;i++){
-      let newMessage = getRandom(MessajesData.length);
+      let newMessage = MessajesData[getRandom(MessajesData.length)];
       if(Messages.includes(newMessage)){
-        newMessage = getRandom(MessajesData.length);
+        newMessage = MessajesData[getRandom(MessajesData.length)];
       } else {
         Messages.push(newMessage);
+
       }
     }
+
+    console.log(Messages)
     return Messages;
   };
 }
@@ -174,4 +177,5 @@ function getName(){
   };
 }
 
-getEmployes(EMPLOYES_COUNT);
+const Emploes = getEmployes(EMPLOYES_COUNT);
+console.log(Emploes)
