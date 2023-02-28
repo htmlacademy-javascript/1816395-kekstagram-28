@@ -45,9 +45,7 @@ const getRandom = (max = Math.random() * MAX_COUNT_UNIK_ID) => Math.floor(Math.r
 const getId = () => {
   let count = 0;
   return function generateId(){
-    count++;
-    // console.log(count);
-    return count;
+    return count++;
   };
 };
 
@@ -150,11 +148,11 @@ const getComments = ()=>{
 };
 
 
-const getEmployes = (countEmployes) => {
+const getEmployes = () => {
   const Employes = [];
   const id = getId();
-  const url = getUrl(countEmployes);
-  for (let i = 0; i < countEmployes; i++){
+  const url = getUrl(EMPLOYES_COUNT);
+  for (let i = 0; i < EMPLOYES_COUNT; i++){
     const newEmploee = {};
     const description = getDescription();
     const likes = getLikes();
@@ -169,5 +167,5 @@ const getEmployes = (countEmployes) => {
   return Employes;
 };
 
-getEmployes(EMPLOYES_COUNT);
+getEmployes();
 
