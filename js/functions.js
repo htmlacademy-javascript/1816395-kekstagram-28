@@ -2,7 +2,7 @@ function getTestString(string,stringLength){
   return string.length >= stringLength;
 }
 
-function getTestPolindrom(str){
+function getTestPalindrome(str){
   str = str.toLowerCase().replaceAll(' ','');
   const reversStr = str.split('').reverse().join('');
   return str === reversStr;
@@ -10,10 +10,10 @@ function getTestPolindrom(str){
 
 function getCutNumber(data){
   data = String(data).split('');
-  const NumberArrey = [0,1,2,3,4,5,6,7,8,9];
+  const NumberArray = [0,1,2,3,4,5,6,7,8,9];
   const CutNumberResult = [];
   for (let i = 0; i < data.length;i++){
-    if (NumberArrey.includes(Number(data[i]))){
+    if (NumberArray.includes(Number(data[i]))){
       CutNumberResult.push(data[i]);
     }
   }
@@ -69,9 +69,9 @@ function getAddStr (str,minLength,addStr){
   }
 }
 
-//  про соблюдение критериев страшно даже подумать...Т_Т
+
 getTestString('test',5);
-getTestPolindrom('test');
+getTestPalindrome('test');
 getCutNumber('test');
 getAddStr('test');
 
