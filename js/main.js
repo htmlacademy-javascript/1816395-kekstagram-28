@@ -1,7 +1,5 @@
 import { getEmployees } from './generateMockData.js';
 
-const generateData = getEmployees();
-console.log(generateData);
+getEmployees();
 
-
-// const { getEmployees } = await import ('./generateMockData.js');
+await import ('./generateMockData.js');
