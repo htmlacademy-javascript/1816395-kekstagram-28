@@ -1,4 +1,5 @@
-import { getEmployes } from './generateMockData.js';
+import { getEmployees } from './generateMockData.js';
 
-const generateData = getEmployes();
-console.log(generateData);
+getEmployees();
+
+await import ('./generateMockData.js');
