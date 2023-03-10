@@ -18,7 +18,7 @@ const getRandom = (max = Math.random() * MAX_COUNT_UNIQ_ID) => Math.floor(Math.r
 
 
 const getId = () => {
-  let count = 0;
+  let count = 1;
   return function generateId() {
     return count++;
   };
@@ -28,7 +28,11 @@ const getId = () => {
 const getUrl = (urlCount) => {
   const url = [];
   return function generateUrl() {
-    const newUrl = (`photos/${getRandom(urlCount)}.jpg`);
+    const newUrl = (`photos/${getRandom(urlCount) + 1}.jpg`);
+    if (newUrl === 'photos/0.jpg'){
+      generateUrl();
+    }
+
     if (url.includes(newUrl)) {
       generateUrl();
     } else {
@@ -51,7 +55,7 @@ const getDescription = () => function generateDescription() {
 
 const getLikes = () => function generateLikes() {
   let likes = getRandom(MAX_LIKES);
-  if (likes > MIN_LIKES) {
+  if (likes > MIN_LIKES && likes) {
     return likes;
   } else {
     likes = getRandom(MAX_LIKES);
@@ -59,23 +63,23 @@ const getLikes = () => function generateLikes() {
 };
 
 
-function getRandomUniqId() {
+function getUniqId() {
   const random = Math.random();
   return random.toString(16).substring(2);
 }
 
-// const getRandomUniqId = () => {
-//   const uniqId = [];
-//   return function generateRandomUniqId() {
-//     let newId = getRandom();
-//     if (uniqId.includes(newId)) {
-//       newId = getRandom();
-//     } else {
-//       uniqId.push(newId);
-//     }
-//     return newId;
-//   };
-// };
+const getRandomUniqId = () => {
+  const uniqId = [];
+  return function generateRandomUniqId() {
+    let newId = getUniqId();
+    if (uniqId.includes(newId)) {
+      newId = getRandom();
+    } else {
+      uniqId.push(newId);
+    }
+    return newId;
+  };
+};
 
 const getAvatar = () => {
   const Avatars = [];
@@ -141,6 +145,9 @@ const getEmployees = () => {
     newEmployee.url = url();
     newEmployee.description = description();
     newEmployee.likes = likes();
+    if (newEmployee.likes === undefined){
+      newEmployee.likes = likes();
+    }
     newEmployee.comments = comments();
     Employees.push(newEmployee);
   }

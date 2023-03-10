@@ -1,5 +1,4 @@
 import { getEmployees } from './generateMockData.js';
+import { generateDom } from './thumbnails.js';
 
-getEmployees();
-
-await import ('./generateMockData.js');
+generateDom(getEmployees());
