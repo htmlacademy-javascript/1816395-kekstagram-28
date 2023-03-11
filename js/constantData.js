@@ -1,11 +1,11 @@
-const EMPLOYES_COUNT = 25;
+const EMPLOYEES_COUNT = 25;
 const COUNT_AVATAR = 6;
 const MAXIMUM_MESSAGES = 2;
 const MAX_LIKES = 200;
 const MIN_LIKES = 15;
-const MAX_COUNT_UNIK_ID = 10000;
+const MAX_COUNT_UNIQ_ID = 10000;
 const MAX_COUNT_COMMENTS = 10;
-const DESCRIPTION_INTRODUCION = [
+const DESCRIPTION_INTRODUCTION = [
   'На фотографии мы видим…',
   'При первом взгляде на фотографию становится очевидным, что…',
   'Предложенная для описания фотография интересна тем, что...',
@@ -39,14 +39,14 @@ const NAMES_ARRAY = [
 ];
 
 export {
-  EMPLOYES_COUNT,
+  EMPLOYEES_COUNT,
   COUNT_AVATAR,
   MAXIMUM_MESSAGES,
   MAX_LIKES,
   MIN_LIKES,
-  MAX_COUNT_UNIK_ID,
+  MAX_COUNT_UNIQ_ID,
   MAX_COUNT_COMMENTS,
-  DESCRIPTION_INTRODUCION,
+  DESCRIPTION_INTRODUCTION,
   DESCRIPTION_BASE,
   DESCRIPTION_END,
   MESSAGES_ARRAY,

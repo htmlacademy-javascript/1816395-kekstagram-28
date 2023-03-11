@@ -1,12 +1,12 @@
 import {
-  EMPLOYES_COUNT,
+  EMPLOYEES_COUNT,
   COUNT_AVATAR,
   MAXIMUM_MESSAGES,
   MAX_LIKES,
   MIN_LIKES,
-  MAX_COUNT_UNIK_ID,
+  MAX_COUNT_UNIQ_ID,
   MAX_COUNT_COMMENTS,
-  DESCRIPTION_INTRODUCION,
+  DESCRIPTION_INTRODUCTION,
   DESCRIPTION_BASE,
   DESCRIPTION_END,
   MESSAGES_ARRAY,
@@ -14,11 +14,11 @@ import {
 } from '../js/constantData.js';
 
 
-const getRandom = (max = Math.random() * MAX_COUNT_UNIK_ID) => Math.floor(Math.random() * max);
+const getRandom = (max = Math.random() * MAX_COUNT_UNIQ_ID) => Math.floor(Math.random() * max);
 
 
 const getId = () => {
-  let count = 0;
+  let count = 1;
   return function generateId() {
     return count++;
   };
@@ -28,7 +28,11 @@ const getId = () => {
 const getUrl = (urlCount) => {
   const url = [];
   return function generateUrl() {
-    const newUrl = (`photos/${getRandom(urlCount)}.jpg`);
+    const newUrl = (`photos/${getRandom(urlCount) + 1}.jpg`);
+    if (newUrl === 'photos/0.jpg'){
+      generateUrl();
+    }
+
     if (url.includes(newUrl)) {
       generateUrl();
     } else {
@@ -44,14 +48,14 @@ const getUrl = (urlCount) => {
 
 
 const getDescription = () => function generateDescription() {
-  return `${DESCRIPTION_INTRODUCION[getRandom(DESCRIPTION_INTRODUCION.length - 1)]} ${DESCRIPTION_BASE[getRandom(DESCRIPTION_BASE.length - 1)]} ${DESCRIPTION_END[getRandom(DESCRIPTION_END.length - 1)]}`;
+  return `${DESCRIPTION_INTRODUCTION[getRandom(DESCRIPTION_INTRODUCTION.length - 1)]} ${DESCRIPTION_BASE[getRandom(DESCRIPTION_BASE.length - 1)]} ${DESCRIPTION_END[getRandom(DESCRIPTION_END.length - 1)]}`;
 
 };
 
 
 const getLikes = () => function generateLikes() {
   let likes = getRandom(MAX_LIKES);
-  if (likes > MIN_LIKES) {
+  if (likes > MIN_LIKES && likes) {
     return likes;
   } else {
     likes = getRandom(MAX_LIKES);
@@ -59,23 +63,23 @@ const getLikes = () => function generateLikes() {
 };
 
 
-function getRandomUnicId() {
+function getUniqId() {
   const random = Math.random();
   return random.toString(16).substring(2);
 }
 
-// const getRandomUnicId = () => {
-//   const unicId = [];
-//   return function generateRandomeUnicId() {
-//     let newId = getRandom();
-//     if (unicId.includes(newId)) {
-//       newId = getRandom();
-//     } else {
-//       unicId.push(newId);
-//     }
-//     return newId;
-//   };
-// };
+const getRandomUniqId = () => {
+  const uniqId = [];
+  return function generateRandomUniqId() {
+    let newId = getUniqId();
+    if (uniqId.includes(newId)) {
+      newId = getRandom();
+    } else {
+      uniqId.push(newId);
+    }
+    return newId;
+  };
+};
 
 const getAvatar = () => {
   const Avatars = [];
@@ -110,7 +114,7 @@ const getName = () => function generateName() {
 
 const getComments = () => {
   const comments = [];
-  const id = getRandomUnicId;
+  const id = getRandomUniqId;
   return function getComment() {
     for (let i = 0; i <= getRandom(MAX_COUNT_COMMENTS); i++) {
       const NewComment = {};
@@ -128,24 +132,27 @@ const getComments = () => {
 };
 
 
-const getEmployes = () => {
-  const Employes = [];
+const getEmployees = () => {
+  const Employees = [];
   const id = getId();
-  const url = getUrl(EMPLOYES_COUNT);
-  for (let i = 0; i < EMPLOYES_COUNT; i++) {
-    const newEmploee = {};
+  const url = getUrl(EMPLOYEES_COUNT);
+  for (let i = 0; i < EMPLOYEES_COUNT; i++) {
+    const newEmployee = {};
     const description = getDescription();
     const likes = getLikes();
     const comments = getComments();
-    newEmploee.id = id();
-    newEmploee.url = url();
-    newEmploee.description = description();
-    newEmploee.likes = likes();
-    newEmploee.comments = comments();
-    Employes.push(newEmploee);
+    newEmployee.id = id();
+    newEmployee.url = url();
+    newEmployee.description = description();
+    newEmployee.likes = likes();
+    if (newEmployee.likes === undefined){
+      newEmployee.likes = likes();
+    }
+    newEmployee.comments = comments();
+    Employees.push(newEmployee);
   }
-  return Employes;
+  return Employees;
 };
 
 
-export { getEmployes };
+export { getEmployees };

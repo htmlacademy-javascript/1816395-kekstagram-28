@@ -1,4 +1,4 @@
-import { getEmployes } from './generateMockData.js';
+import { getEmployees } from './generateMockData.js';
+import { generateDom } from './thumbnails.js';
 
-const generateData = getEmployes();
-console.log(generateData);
+generateDom(getEmployees());
