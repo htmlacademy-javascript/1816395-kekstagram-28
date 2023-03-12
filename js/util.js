@@ -12,6 +12,7 @@ const util = {
     return evt.key === 'Enter';
   },
   getCount: function (start, step) {
+    console.log('work');
     let count = start;
     return function generateCount() {
       return (count = count + step);
