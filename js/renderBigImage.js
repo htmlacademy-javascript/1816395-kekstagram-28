@@ -47,7 +47,7 @@ const renderComments = (comments) => {
 
 
 const renderBigImage = (thumbnail) => {
-  const limitComments = util.getCount(0, 2);
+  const limitComments = util.getCount(0, 5);
   currentPicture = thumbnail;
   currentPicture.limitComments = limitComments;
   currentPicture.counterComments = limitComments();
@@ -56,13 +56,13 @@ const renderBigImage = (thumbnail) => {
   pictureLikes.textContent = currentPicture.likes;
   pictureDescription.textContent = currentPicture.alt;
   pictureCommentsCount.textContent = `${currentPicture.comments.length} из 125 комментариев`;
-  renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
+  renderComments(currentPicture.comments.slice(0, 2));
 };
 
 const updateComments = () => {
   currentPicture.counterComments = currentPicture.limitComments();
   renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
-  console.log(currentPicture.counterComments);
+  // console.log(currentPicture.counterComments);
 };
 
 const closeBigImage = () => {
