@@ -126,21 +126,23 @@ const getPictures = () => {
   const pictures = [];
   const id = util.getCount(0,1);
   const url = getUrl(PICTURES_COUNT);
+  const avatar = getAvatar();
   for (let i = 0; i < PICTURES_COUNT; i++) {
-    const newPictures = {};
+    const newPicture = {};
     const description = getDescription();
     const likes = getLikes();
     const comments = getComments();
-    newPictures.id = id();
-    newPictures.url = url();
-    newPictures.description = description();
-    newPictures.likes = likes();
-    if (!newPictures.likes){
-      newPictures.likes = likes();
-      // console.log(newPictures.id);
+    newPicture.id = id();
+    newPicture.url = url();
+    newPicture.description = description();
+    newPicture.avatar = avatar();
+    newPicture.likes = likes();
+    if (!newPicture.likes){
+      newPicture.likes = likes();
+      // console.log(newPicture.id);
     }
-    newPictures.comments = comments();
-    pictures.push(newPictures);
+    newPicture.comments = comments();
+    pictures.push(newPicture);
   }
   return pictures;
 };

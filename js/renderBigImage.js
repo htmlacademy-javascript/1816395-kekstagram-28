@@ -8,6 +8,7 @@ const pictureLikes = util.getElement('.likes-count', bigPictureWrap);
 const pictureCommentsCount = util.getElement('.social__comment-count', bigPictureWrap);
 const pictureComments = util.getElement('.social__comments', bigPictureWrap);
 const pictureDescription = util.getElement('.social__caption', bigPictureWrap);
+const pictureAvatar = util.getElement('.social__picture', bigPictureWrap);
 const buttonClosePicture = util.getElement('.big-picture__cancel', bigPictureWrap);
 const body = util.getElement('body');
 const socialCommentsLoader = util.getElement('.social__comments-loader', bigPictureWrap);
@@ -53,6 +54,8 @@ const renderBigImage = (thumbnail) => {
   picture.alt = currentPicture.alt;
   pictureLikes.textContent = currentPicture.likes;
   pictureDescription.textContent = currentPicture.alt;
+  // console.log(currentPicture)
+  pictureAvatar.src = currentPicture.avatar;
   pictureCommentsCount.textContent = `${currentPicture.comments.length} из 125 комментариев`;
   renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
 };
