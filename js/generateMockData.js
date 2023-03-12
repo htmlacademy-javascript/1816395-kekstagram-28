@@ -15,14 +15,6 @@ import {
 import { util } from './util.js';
 
 
-const getId = () => {
-  let count = 1;
-  return function generateId() {
-    return count++;
-  };
-};
-
-
 const getUrl = (urlCount) => {
   const url = [];
   return function generateUrl() {
@@ -132,7 +124,7 @@ const getComments = () => {
 
 const getPictures = () => {
   const pictures = [];
-  const id = getId();
+  const id = util.getCount(0,1);
   const url = getUrl(PICTURES_COUNT);
   for (let i = 0; i < PICTURES_COUNT; i++) {
     const newPictures = {};
