@@ -1,22 +1,24 @@
-const getElement = (optionName, parent) => parent.querySelector(optionName);
+import {util} from './util.js';
 
-const picturesContainer = getElement('.pictures', document);
-const template = getElement('.picture', getElement('#picture', document).content);
+// const util.getElement = (optionName, parent) => parent.querySelector(optionName);
+
+const picturesContainer = util.getElement('.pictures');
+const template = util.getElement('.picture', util.getElement('#picture').content);
 
 const generatePictureElement = (className, parent,dataPicture) => {
-  const picture = getElement(className, parent);
+  const picture = util.getElement(className, parent);
   picture.src = dataPicture.url;
   picture.alt = dataPicture.description;
   picturesContainer.appendChild(parent);
 };
 
 const generatePictureComments = (className, parent,dataPicture)=>{
-  const pictureComments = getElement(className, getElement('.picture__info', parent));
+  const pictureComments = util.getElement(className, util.getElement('.picture__info', parent));
   pictureComments.textContent = dataPicture.comments.length;
 };
 
 const generatePictureLikes = (className, parent,dataPicture) =>{
-  const likes = getElement(className, getElement('.picture__info', parent));
+  const likes = util.getElement(className, util.getElement('.picture__info', parent));
   likes.textContent = dataPicture.likes;
 
 };
