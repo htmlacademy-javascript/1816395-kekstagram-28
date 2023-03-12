@@ -12,7 +12,7 @@ const generatePictureElement = (className, parent,dataPicture) => {
 
 const generatePictureComments = (className, parent,dataPicture)=>{
   const pictureComments = getElement(className, getElement('.picture__info', parent));
-  pictureComments.textContent = dataPicture.likes;
+  pictureComments.textContent = dataPicture.comments.length;
 };
 
 const generatePictureLikes = (className, parent,dataPicture) =>{

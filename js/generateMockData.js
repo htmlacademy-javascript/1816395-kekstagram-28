@@ -55,7 +55,7 @@ const getDescription = () => function generateDescription() {
 
 const getLikes = () => function generateLikes() {
   let likes = getRandom(MAX_LIKES);
-  if (likes > MIN_LIKES && likes) {
+  if (likes > MIN_LIKES && likes > 0) {
     return likes;
   } else {
     likes = getRandom(MAX_LIKES);
@@ -145,8 +145,9 @@ const getEmployees = () => {
     newEmployee.url = url();
     newEmployee.description = description();
     newEmployee.likes = likes();
-    if (newEmployee.likes === undefined){
+    if (!newEmployee.likes){
       newEmployee.likes = likes();
+      // console.log(newEmployee.id);
     }
     newEmployee.comments = comments();
     Employees.push(newEmployee);
