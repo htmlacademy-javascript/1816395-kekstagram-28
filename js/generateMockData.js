@@ -1,5 +1,5 @@
 import {
-  EMPLOYEES_COUNT,
+  PICTURES_COUNT,
   COUNT_AVATAR,
   MAXIMUM_MESSAGES,
   MAX_LIKES,
@@ -81,8 +81,8 @@ const getRandomUniqId = () => {
 
 const getAvatar = () => {
   const Avatars = [];
-  for (let i = 0; i < COUNT_AVATAR; i++) {
-    const urlAvatar = `.img/Avatar-${i}.svg`;
+  for (let i = 1; i < COUNT_AVATAR; i++) {
+    const urlAvatar = `./img/avatar-${i}.svg`;
     Avatars.push(urlAvatar);
   }
   return function generateAvatars() {
@@ -130,28 +130,28 @@ const getComments = () => {
 };
 
 
-const getEmployees = () => {
-  const Employees = [];
+const getPictures = () => {
+  const pictures = [];
   const id = getId();
-  const url = getUrl(EMPLOYEES_COUNT);
-  for (let i = 0; i < EMPLOYEES_COUNT; i++) {
-    const newEmployee = {};
+  const url = getUrl(PICTURES_COUNT);
+  for (let i = 0; i < PICTURES_COUNT; i++) {
+    const newPictures = {};
     const description = getDescription();
     const likes = getLikes();
     const comments = getComments();
-    newEmployee.id = id();
-    newEmployee.url = url();
-    newEmployee.description = description();
-    newEmployee.likes = likes();
-    if (!newEmployee.likes){
-      newEmployee.likes = likes();
-      // console.log(newEmployee.id);
+    newPictures.id = id();
+    newPictures.url = url();
+    newPictures.description = description();
+    newPictures.likes = likes();
+    if (!newPictures.likes){
+      newPictures.likes = likes();
+      // console.log(newPictures.id);
     }
-    newEmployee.comments = comments();
-    Employees.push(newEmployee);
+    newPictures.comments = comments();
+    pictures.push(newPictures);
   }
-  return Employees;
+  return pictures;
 };
 
 
-export { getEmployees };
+export { getPictures };

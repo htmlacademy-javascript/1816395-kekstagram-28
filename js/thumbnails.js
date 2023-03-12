@@ -10,6 +10,11 @@ const generatePictureElement = (className, parent,dataPicture) => {
   picture.src = dataPicture.url;
   picture.alt = dataPicture.description;
   picturesContainer.appendChild(parent);
+  // console.log(dataPicture);
+  picture.id = dataPicture.id;
+  picture.likes = dataPicture.likes;
+  picture.description = dataPicture.description;
+  picture.comments = dataPicture.comments;
 };
 
 const generatePictureComments = (className, parent,dataPicture)=>{
