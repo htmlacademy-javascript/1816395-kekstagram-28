@@ -109,7 +109,7 @@ const getName = () => function generateName() {
 };
 
 const getComments = (authorAvatar) => {
-  console.log(authorAvatar)
+  console.log(authorAvatar);
   const comments = [];
   const id = getRandomUniqId;
   return function getComment() {
