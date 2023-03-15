@@ -1,4 +1,7 @@
-import { getEmployees } from './generateMockData.js';
+import { getPictures } from './generateMockData.js';
 import { generateDom } from './thumbnails.js';
+import './renderBigImage.js';
 
-generateDom(getEmployees());
+const data = getPictures();
+generateDom(data);
+// renderBigImage();
