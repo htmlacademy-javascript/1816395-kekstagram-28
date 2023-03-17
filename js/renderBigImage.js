@@ -68,13 +68,14 @@ const updateComments = () => {
 
 const closeBigImage = () => {
   bigPictureWrap.classList.add('hidden');
+  body.classList.remove('modal-open');
   // evtHandler.removeListener(document,'keydown',closeBigImage);
 
 };
 
 
 const openBigImage = (thumbnail) => {
-  body.classList.add('.modal-open');
+  body.classList.add('modal-open');
   // socialCommentsLoader.classList.add('hidden');
   renderBigImage(thumbnail);
   bigPictureWrap.classList.remove('hidden');
