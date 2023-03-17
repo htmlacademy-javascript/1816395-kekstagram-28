@@ -10,9 +10,16 @@ const util = {
   },
   isEnter: function (evt) {
     return evt.key === 'Enter';
+  },
+  getCount: function (start, step) {
+    let count = start;
+    return function generateCount() {
+      return (count = count + step);
+    };
   }
 
 };
 
 
 export { util };
+

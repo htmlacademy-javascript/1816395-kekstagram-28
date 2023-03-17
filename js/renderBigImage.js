@@ -8,9 +8,11 @@ const pictureLikes = util.getElement('.likes-count', bigPictureWrap);
 const pictureCommentsCount = util.getElement('.social__comment-count', bigPictureWrap);
 const pictureComments = util.getElement('.social__comments', bigPictureWrap);
 const pictureDescription = util.getElement('.social__caption', bigPictureWrap);
+const pictureAvatar = util.getElement('.social__picture', bigPictureWrap);
 const buttonClosePicture = util.getElement('.big-picture__cancel', bigPictureWrap);
 const body = util.getElement('body');
 const socialCommentsLoader = util.getElement('.social__comments-loader', bigPictureWrap);
+let currentPicture;
 
 const renderAvatar = (comment, parent) => {
   const avatar = document.createElement('img');
@@ -46,14 +48,23 @@ const renderComments = (comments) => {
 
 
 const renderBigImage = (thumbnail) => {
-  picture.src = thumbnail.src;
-  picture.alt = thumbnail.alt;
-  pictureLikes.textContent = thumbnail.likes;
-  pictureDescription.textContent = thumbnail.alt;
-  pictureCommentsCount.textContent = `${thumbnail.comments.length} из 125 комментариев`;
-  renderComments(thumbnail.comments);
+  currentPicture = thumbnail;
+  currentPicture.counterComments = 2;
+  picture.src = currentPicture.src;
+  picture.alt = currentPicture.alt;
+  pictureLikes.textContent = currentPicture.likes;
+  pictureDescription.textContent = currentPicture.alt;
+  // console.log(currentPicture)
+  pictureAvatar.src = currentPicture.avatar;
+  pictureCommentsCount.textContent = `${currentPicture.comments.length} из 125 комментариев`;
+  renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
 };
 
+const updateComments = () => {
+  currentPicture.counterComments += 5;
+  renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
+  // console.log(currentPicture.counterComments);
+};
 
 const closeBigImage = () => {
   bigPictureWrap.classList.add('hidden');
@@ -64,18 +75,18 @@ const closeBigImage = () => {
 
 const openBigImage = (thumbnail) => {
   body.classList.add('.modal-open');
-  socialCommentsLoader.classList.add('hidden');
+  // socialCommentsLoader.classList.add('hidden');
   renderBigImage(thumbnail);
   bigPictureWrap.classList.remove('hidden');
-  document.removeEventListener('keydown', closeBigImage);
   // document.addEventListener('keydown', onDocumentEscDown);
   // console.log(body);
   // console.log(pictureComments);
   // console.log(bigPictureWrap);
 };
-evtHandler.onKeydown(document,util.isEscape,closeBigImage);
+evtHandler.onKeydown(document, util.isEscape, closeBigImage);
 evtHandler.onClick(container, openBigImage, 'picture__img');
 evtHandler.onClick(buttonClosePicture, closeBigImage);
-evtHandler.onKeydown(buttonClosePicture,util.isEnter,closeBigImage);
+evtHandler.onKeydown(buttonClosePicture, util.isEnter, closeBigImage);
+evtHandler.onClick(socialCommentsLoader, updateComments);
 
 

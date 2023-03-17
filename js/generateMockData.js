@@ -15,19 +15,11 @@ import {
 import { util } from './util.js';
 
 
-const getId = () => {
-  let count = 1;
-  return function generateId() {
-    return count++;
-  };
-};
-
-
 const getUrl = (urlCount) => {
   const url = [];
   return function generateUrl() {
     const newUrl = (`photos/${util.getRandom(urlCount) + 1}.jpg`);
-    if (newUrl === 'photos/0.jpg'){
+    if (newUrl === 'photos/0.jpg') {
       generateUrl();
     }
 
@@ -79,14 +71,20 @@ const getRandomUniqId = () => {
   };
 };
 
-const getAvatar = () => {
+const getAvatar = (authorAvatar = '') => {
   const Avatars = [];
   for (let i = 1; i < COUNT_AVATAR; i++) {
     const urlAvatar = `./img/avatar-${i}.svg`;
     Avatars.push(urlAvatar);
   }
   return function generateAvatars() {
-    const Avatar = Avatars[util.getRandom(Avatars.length)];
+    let Avatar = Avatars[util.getRandom(Avatars.length)];
+    // console.log('new :' + Avatar);
+    // console.log('author :' + authorAvatar);
+    while (Avatar.toString() === authorAvatar.toString()) {
+      // console.log(Avatar)
+      Avatar = Avatars[util.getRandom(Avatars.length)];
+    }
     return Avatar;
   };
 };
@@ -110,17 +108,18 @@ const getName = () => function generateName() {
   return NAMES_ARRAY[util.getRandom(NAMES_ARRAY.length)];
 };
 
-const getComments = () => {
+const getComments = (authorAvatar) => {
+  // console.log(authorAvatar);
   const comments = [];
   const id = getRandomUniqId;
   return function getComment() {
     for (let i = 0; i <= util.getRandom(MAX_COUNT_COMMENTS); i++) {
       const NewComment = {};
-      const Avatar = getAvatar();
+      const Avatar = getAvatar(authorAvatar);
       const Message = getMessage();
       const Name = getName();
       NewComment.id = id();
-      NewComment.Avatar = Avatar();
+      NewComment.Avatar = Avatar(authorAvatar);
       NewComment.Message = Message();
       NewComment.name = Name();
       comments.push(NewComment);
@@ -132,23 +131,25 @@ const getComments = () => {
 
 const getPictures = () => {
   const pictures = [];
-  const id = getId();
+  const id = util.getCount(0, 1);
   const url = getUrl(PICTURES_COUNT);
+  const avatar = getAvatar();
   for (let i = 0; i < PICTURES_COUNT; i++) {
-    const newPictures = {};
+    const newPicture = {};
     const description = getDescription();
     const likes = getLikes();
-    const comments = getComments();
-    newPictures.id = id();
-    newPictures.url = url();
-    newPictures.description = description();
-    newPictures.likes = likes();
-    if (!newPictures.likes){
-      newPictures.likes = likes();
-      // console.log(newPictures.id);
+    newPicture.avatar = avatar();
+    const comments = getComments(newPicture.avatar);
+    newPicture.id = id();
+    newPicture.url = url();
+    newPicture.description = description();
+    newPicture.likes = likes();
+    if (!newPicture.likes) {
+      newPicture.likes = likes();
+      // console.log(newPicture.id);
     }
-    newPictures.comments = comments();
-    pictures.push(newPictures);
+    newPicture.comments = comments();
+    pictures.push(newPicture);
   }
   return pictures;
 };

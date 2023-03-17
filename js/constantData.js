@@ -4,7 +4,7 @@ const MAXIMUM_MESSAGES = 2;
 const MAX_LIKES = 200;
 const MIN_LIKES = 15;
 const MAX_COUNT_UNIQ_ID = 10000;
-const MAX_COUNT_COMMENTS = 10;
+const MAX_COUNT_COMMENTS = 20;
 const DESCRIPTION_INTRODUCTION = [
   'На фотографии мы видим интерестную композицию. ',
   'При первом взгляде на фотографию становится очевидным, что это фиаско. ',

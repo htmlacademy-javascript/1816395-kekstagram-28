@@ -15,6 +15,7 @@ const generatePictureElement = (className, parent,dataPicture) => {
   picture.likes = dataPicture.likes;
   picture.description = dataPicture.description;
   picture.comments = dataPicture.comments;
+  picture.avatar = dataPicture.avatar;
 };
 
 const generatePictureComments = (className, parent,dataPicture)=>{
