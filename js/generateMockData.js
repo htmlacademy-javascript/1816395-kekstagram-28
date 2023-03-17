@@ -45,11 +45,11 @@ const getDescription = () => function generateDescription() {
 
 const getLikes = () => function generateLikes() {
   let likes = util.getRandom(MAX_LIKES);
-  if (likes > MIN_LIKES && likes > 0) {
-    return likes;
-  } else {
+  if (likes < MIN_LIKES && likes === 0) {
     likes = util.getRandom(MAX_LIKES);
   }
+  return likes;
+
 };
 
 
@@ -144,10 +144,10 @@ const getPictures = () => {
     newPicture.url = url();
     newPicture.description = description();
     newPicture.likes = likes();
-    if (!newPicture.likes) {
-      newPicture.likes = likes();
-      // console.log(newPicture.id);
-    }
+    // if (!newPicture.likes) {
+    //   newPicture.likes = likes();
+    //   // console.log(newPicture.id);
+    // }
     newPicture.comments = comments();
     pictures.push(newPicture);
   }
