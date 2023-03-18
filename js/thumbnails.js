@@ -2,17 +2,17 @@ import { util } from './util.js';
 import { thumbnailElement, templateClass } from './elementsSettings.js';
 
 
-const generatePictureElement = (className, parent, { url, description, id, likes, comments, avatar }) => {
+const generatePictureElement = (className, parent, { url, description, id }) => {
   const picture = util.getElement(className, parent);
   picture.src = url;
   picture.alt = description;
-  // console.log(dataPicture);
-  picture.id = id;
   picture.dataset.pictureId = id;
-  picture.likes = likes;
-  picture.description = description;
-  picture.comments = comments;
-  picture.avatar = avatar;
+  // console.log(dataPicture);
+  // picture.id = id;
+  // picture.likes = likes;
+  // picture.description = description;
+  // picture.comments = comments;
+  // picture.avatar = avatar;
   thumbnailElement.container.appendChild(parent);
 };
 

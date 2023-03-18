@@ -26,6 +26,14 @@ const util = {
   closeModal: function (modal, body) {
     body.classList.remove('modal-open');
     modal.classList.add('hidden');
+  },
+  filterClassName: function (className) {
+    const classWithoutDot = className.replace('.','');
+    return classWithoutDot;
+  },
+  getCurrentPicture:function (DATA,thumbnail){
+    // console.log(+thumbnail.dataset.pictureId);
+    return DATA.find((item)=>item.id === +thumbnail.dataset.pictureId);
   }
 
 };

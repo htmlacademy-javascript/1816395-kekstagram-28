@@ -1,4 +1,10 @@
 import { util } from './util.js';
+const mainElements = {
+  main: util.getElement('main'),
+  body: util.getElement('body')
+};
+
+
 const templateClass = {
   classTemplateContent: '.picture',
   classCommentsWrap: '.picture__info',
@@ -18,5 +24,48 @@ const thumbnailElement = {
     return util.getElement(templateClass.classCommentsWrap, parent);
   }
 };
+const classModalBigImage = {
+  wrap:
+    '.big-picture',
+  image:
+    '.picture__img',
+  imageTag:
+    'img',
+  likes:
+    '.likes-count',
+  commentsCount:
+    '.social__comment-count',
+  comments:
+    '.social__comments',
+  description:
+    '.social__caption',
+  avatar:
+    '.social__picture',
+  closeButton:
+    '.big-picture__cancel',
+  commentsLoaderButton:
+    '.social__comments-loader',
+  socialPicture:
+    '.social__picture',
+  socialText:
+    '.social__text',
+  socialComment:
+    '.social__comment'
 
-export { thumbnailElement, templateClass };
+};
+const modalBigImageElementWrap = util.getElement(classModalBigImage.wrap);
+const modalBigImageElement = {
+  imageElement: util.getElement(classModalBigImage.image, modalBigImageElementWrap),
+  pictureElement: util.getElement(classModalBigImage.imageTag, modalBigImageElementWrap),
+  imageLikes: util.getElement(classModalBigImage.likes, modalBigImageElementWrap),
+  imageAvatar: util.getElement(classModalBigImage.avatar, modalBigImageElementWrap),
+  imageCommentsCount: util.getElement(classModalBigImage.commentsCount, modalBigImageElementWrap),
+  imageComments: util.getElement(classModalBigImage.comments, modalBigImageElementWrap),
+  imageDescription: util.getElement(classModalBigImage.description, modalBigImageElementWrap),
+  imageCloseButton: util.getElement(classModalBigImage.closeButton, modalBigImageElementWrap),
+  imageCommentsLoaderButton: util.getElement(classModalBigImage.commentsLoaderButton, modalBigImageElementWrap),
+  imageTag: util.getElement(classModalBigImage.imageTag, modalBigImageElementWrap)
+};
+
+
+export { thumbnailElement, templateClass, classModalBigImage, modalBigImageElement, mainElements, modalBigImageElementWrap };
