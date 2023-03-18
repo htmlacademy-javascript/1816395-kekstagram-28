@@ -1,8 +1,8 @@
-import { getPictures } from './generateMockData.js';
-import { generateDom } from './thumbnails.js';
+import { DATA } from './generateMockData.js';
+import { generateDomThumbnails } from './thumbnails.js';
 import './renderBigImage.js';
+import './uploadHandler.js';
 
-const data = getPictures();
 // console.log(data)
-generateDom(data);
+generateDomThumbnails(DATA);
 // renderBigImage();

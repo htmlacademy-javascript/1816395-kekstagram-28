@@ -155,4 +155,4 @@ const getPictures = () => {
 };
 
 
-export { getPictures };
+export const DATA = getPictures();

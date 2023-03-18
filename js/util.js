@@ -1,3 +1,5 @@
+
+
 const util = {
   getElement: function (optionName, parent = document) {
     return parent.querySelector(optionName);
@@ -16,6 +18,14 @@ const util = {
     return function generateCount() {
       return (count = count + step);
     };
+  },
+  openModal: function (modal, body) {
+    body.classList.add('modal-open');
+    modal.classList.remove('hidden');
+  },
+  closeModal: function (modal, body) {
+    body.classList.remove('modal-open');
+    modal.classList.add('hidden');
   }
 
 };

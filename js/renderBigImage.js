@@ -2,7 +2,7 @@ import { util } from './util.js';
 import { evtHandler } from './evtHandler.js';
 
 const bigPictureWrap = util.getElement('.big-picture');
-const container = util.getElement('main');
+const main = util.getElement('main');
 const picture = util.getElement('img', bigPictureWrap);
 const pictureLikes = util.getElement('.likes-count', bigPictureWrap);
 const pictureCommentsCount = util.getElement('.social__comment-count', bigPictureWrap);
@@ -63,29 +63,19 @@ const renderBigImage = (thumbnail) => {
 const updateComments = () => {
   currentPicture.counterComments += 5;
   renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
-  // console.log(currentPicture.counterComments);
 };
 
 const closeBigImage = () => {
-  bigPictureWrap.classList.add('hidden');
-  body.classList.remove('modal-open');
-  // evtHandler.removeListener(document,'keydown',closeBigImage);
-
+  util.closeModal(bigPictureWrap,body);
 };
 
 
 const openBigImage = (thumbnail) => {
-  body.classList.add('modal-open');
-  // socialCommentsLoader.classList.add('hidden');
   renderBigImage(thumbnail);
-  bigPictureWrap.classList.remove('hidden');
-  // document.addEventListener('keydown', onDocumentEscDown);
-  // console.log(body);
-  // console.log(pictureComments);
-  // console.log(bigPictureWrap);
+  util.openModal(bigPictureWrap,body);
 };
 evtHandler.onKeydown(document, util.isEscape, closeBigImage);
-evtHandler.onClick(container, openBigImage, 'picture__img');
+evtHandler.onClick(main, openBigImage, 'picture__img');
 evtHandler.onClick(buttonClosePicture, closeBigImage);
 evtHandler.onKeydown(buttonClosePicture, util.isEnter, closeBigImage);
 evtHandler.onClick(socialCommentsLoader, updateComments);

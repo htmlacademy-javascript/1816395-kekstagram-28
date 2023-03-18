@@ -1,45 +1,43 @@
-import {util} from './util.js';
+import { util } from './util.js';
+import { thumbnailElement, templateClass } from './elementsSettings.js';
 
-// const util.getElement = (optionName, parent) => parent.querySelector(optionName);
 
-const picturesContainer = util.getElement('.pictures');
-const template = util.getElement('.picture', util.getElement('#picture').content);
-
-const generatePictureElement = (className, parent,dataPicture) => {
+const generatePictureElement = (className, parent, { url, description, id, likes, comments, avatar }) => {
   const picture = util.getElement(className, parent);
-  picture.src = dataPicture.url;
-  picture.alt = dataPicture.description;
-  picturesContainer.appendChild(parent);
+  picture.src = url;
+  picture.alt = description;
   // console.log(dataPicture);
-  picture.id = dataPicture.id;
-  picture.likes = dataPicture.likes;
-  picture.description = dataPicture.description;
-  picture.comments = dataPicture.comments;
-  picture.avatar = dataPicture.avatar;
+  picture.id = id;
+  picture.dataset.pictureId = id;
+  picture.likes = likes;
+  picture.description = description;
+  picture.comments = comments;
+  picture.avatar = avatar;
+  thumbnailElement.container.appendChild(parent);
 };
 
-const generatePictureComments = (className, parent,dataPicture)=>{
-  const pictureComments = util.getElement(className, util.getElement('.picture__info', parent));
-  pictureComments.textContent = dataPicture.comments.length;
+const generatePictureComments = (className, parent, { comments }) => {
+  const pictureComments = util.getElement(className, thumbnailElement.getCommentsWrap(parent));
+  pictureComments.textContent = comments.length;
 };
 
-const generatePictureLikes = (className, parent,dataPicture) =>{
-  const likes = util.getElement(className, util.getElement('.picture__info', parent));
-  likes.textContent = dataPicture.likes;
+const generatePictureLikes = (className, parent, { likes }) => {
+  const likesElement = util.getElement(className, thumbnailElement.getCommentsWrap(parent));
+  likesElement.textContent = likes;
 
 };
 
-const generateElement = (dataPicture) => {
-  const newElement = template.cloneNode(true);
-  generatePictureElement('.picture__img', newElement, dataPicture);
-  generatePictureComments('.picture__comments', newElement, dataPicture);
-  generatePictureLikes('.picture__likes', newElement, dataPicture);
+const generateThumbnails = (dataPicture) => {
+  const newElement = thumbnailElement.template.cloneNode(true);
+  generatePictureElement(templateClass.classImage, newElement, dataPicture);
+  generatePictureComments(templateClass.classComments, newElement, dataPicture);
+  generatePictureLikes(templateClass.classLikes, newElement, dataPicture);
 };
 
-const generateDom = (dataPictures) =>{
-  dataPictures.forEach((dataPicture) => {
-    generateElement(dataPicture);
+const generateDomThumbnails = (DATA) => {
+  DATA.forEach((dataPicture) => {
+    generateThumbnails(dataPicture);
   });
 };
 
-export { generateDom };
+export { generateDomThumbnails };
