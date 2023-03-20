@@ -1,7 +1,7 @@
 const evtHandler = {
   onClick: function (element, func, className) {
     element.addEventListener('click', (evt) => {
-      evt.preventDefault();
+      // evt.preventDefault();
       if (evt.target.classList.contains(className)) {
         func(evt.target);
       }
@@ -10,6 +10,18 @@ const evtHandler = {
       }
     });
   },
+  onChange: function (element, func, className) {
+    element.addEventListener('change', (evt) => {
+      if (evt.target.value !== '') {
+        // debugger
+        func();
+      }
+      if (!className) {
+        func();
+      }
+    });
+  }
+  ,
   onKeydown: function (element, testFunc, func) {
     element.addEventListener('keydown', (evt) => {
       if (testFunc(evt)) {

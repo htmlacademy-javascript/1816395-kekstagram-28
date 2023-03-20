@@ -66,6 +66,26 @@ const modalBigImageElement = {
   imageCommentsLoaderButton: util.getElement(classModalBigImage.commentsLoaderButton, modalBigImageElementWrap),
   imageTag: util.getElement(classModalBigImage.imageTag, modalBigImageElementWrap)
 };
+const classForm = {
+  uploadPicture: '.img-upload__title',
+};
+
+const formElement = {
+  uploadImageClass: '.img-upload__input',
+  uploadImageEditClass: '.img-upload__overlay',
+  imagePreviewWrapClass: '.img-upload__preview',
+  uploadImageCancelBTNClass: '.img-upload__cancel',
+  previewEffectsClass: '.effects__preview'
+};
 
 
-export { thumbnailElement, templateClass, classModalBigImage, modalBigImageElement, mainElements, modalBigImageElementWrap };
+export {
+  thumbnailElement,
+  templateClass,
+  classModalBigImage,
+  modalBigImageElement,
+  mainElements,
+  modalBigImageElementWrap,
+  classForm,
+  formElement
+};

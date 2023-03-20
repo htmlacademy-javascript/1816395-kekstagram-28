@@ -80,10 +80,11 @@ const openBigImage = (thumbnail) => {
   renderBigImage(util.getCurrentPicture(DATA,thumbnail));
   util.openModal(modalBigImageElementWrap, mainElements.body);
 };
-evtHandler.onKeydown(document, util.isEscape, closeBigImage);
+
 evtHandler.onClick(mainElements.main, openBigImage, util.filterClassName(classModalBigImage.image));
 evtHandler.onClick(modalBigImageElement.imageCloseButton, closeBigImage);
 evtHandler.onKeydown(modalBigImageElement.imageCloseButton, util.isEnter, closeBigImage);
+evtHandler.onKeydown(document, util.isEscape, closeBigImage);
 evtHandler.onClick(modalBigImageElement.imageCommentsLoaderButton, updateComments);
 // console.log(util.filterClassName(classModalBigImage.image));
 
