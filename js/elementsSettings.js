@@ -70,22 +70,35 @@ const classForm = {
   uploadPicture: '.img-upload__title',
 };
 
-const formElementClass = {
-  uploadImageClass: '.img-upload__input',
-  uploadImageEditClass: '.img-upload__overlay',
-  imagePreviewWrapClass: '.img-upload__preview',
-  uploadImageCancelBTNClass: '.img-upload__cancel',
-  previewEffectsClass: '.effects__preview'
-};
+const
+  formElementClass = {
+    uploadImageClass: '.img-upload__input',
+    uploadImageEditClass: '.img-upload__overlay',
+    imagePreviewWrapClass: '.img-upload__preview',
+    uploadImageCancelBTNClass: '.img-upload__cancel',
+    previewEffectsClass: '.effects__preview'
+  };
+
+const
+  modalForm = util.getElement(formElementClass.uploadImageEditClass);
+
+
+const
+  formElement = {
+    uploadFile: util.getElement(formElementClass.uploadImageClass),
+    imagePreview: util.getElement('img', util.getElement(formElementClass.imagePreviewWrapClass)),
+    previewBtnCancel: util.getElement(formElementClass.uploadImageCancelBTNClass, modalForm),
+    effectsPreview: util.getElements('span', modalForm)
+  };
 
 
 const scaleElements = {
   scaleUpClass: '.scale__control--bigger',
   scaleDownClass: '.scale__control--smaller',
   scaleValueClass: '.scale__control--value',
-  DEFAULT_SCALE_VALUE : 100,
-  MIN_SCALE_VALUE : 25,
-  MAX_SCALE_VALUE : 100
+  DEFAULT_SCALE_VALUE: 100,
+  MIN_SCALE_VALUE: 25,
+  MAX_SCALE_VALUE: 100
 };
 
 
@@ -97,7 +110,8 @@ export {
   mainElements,
   modalBigImageElementWrap,
   classForm,
-  formElementClass
-  ,
+  formElementClass,
+  modalForm,
+  formElement,
   scaleElements
 };

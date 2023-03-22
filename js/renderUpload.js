@@ -1,14 +1,14 @@
 import { util } from './util.js';
-import { formElementClass, mainElements } from './elementsSettings.js';
+import { mainElements, modalForm , formElement} from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
 import { resetScale } from './handlerScale.js';
 
 const hashtag = /^#[a-zа-я0-9]{1,19}$/i;
-const uploadFile = util.getElement(formElementClass.uploadImageClass),
-  modalForm = util.getElement(formElementClass.uploadImageEditClass),
-  imagePreview = util.getElement('img', util.getElement(formElementClass.imagePreviewWrapClass)),
-  previewBtnCancel = util.getElement(formElementClass.uploadImageCancelBTNClass, modalForm),
-  effectsPreview = util.getElements('span', modalForm);
+const
+  uploadFile = formElement.uploadFile,
+  imagePreview = formElement.imagePreview,
+  previewBtnCancel = formElement.previewBtnCancel,
+  effectsPreview = formElement.effectsPreview;
 
 const testImageContent = (uploadedImage) => {
   imagePreview.src = window.URL.createObjectURL(uploadedImage);
@@ -38,7 +38,7 @@ evtHandler.onClick(previewBtnCancel, closeModalForm);
 evtHandler.onKeydown(previewBtnCancel, util.isEnter, closeModalForm);
 evtHandler.onKeydown(document, util.isEscape, closeModalForm);
 
-export {imagePreview, modalForm};
+export { imagePreview, modalForm };
 // uploadFile.addEventListener('change', (evt) => {
 //   if (evt.target.value !== '') {
 //     .classList.remove('hidden');
