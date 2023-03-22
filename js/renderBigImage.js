@@ -1,5 +1,5 @@
 import { util } from './util.js';
-import { evtHandler } from './evtHandler.js';
+import { evtHandler } from './handlerEvt.js';
 import { classModalBigImage, modalBigImageElement, mainElements, modalBigImageElementWrap } from './elementsSettings.js';
 import { DATA } from './generateMockData.js';
 // const bigPictureWrap = util.getElement('.big-picture');

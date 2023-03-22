@@ -70,12 +70,22 @@ const classForm = {
   uploadPicture: '.img-upload__title',
 };
 
-const formElement = {
+const formElementClass = {
   uploadImageClass: '.img-upload__input',
   uploadImageEditClass: '.img-upload__overlay',
   imagePreviewWrapClass: '.img-upload__preview',
   uploadImageCancelBTNClass: '.img-upload__cancel',
   previewEffectsClass: '.effects__preview'
+};
+
+
+const scaleElements = {
+  scaleUpClass: '.scale__control--bigger',
+  scaleDownClass: '.scale__control--smaller',
+  scaleValueClass: '.scale__control--value',
+  DEFAULT_SCALE_VALUE : 100,
+  MIN_SCALE_VALUE : 25,
+  MAX_SCALE_VALUE : 100
 };
 
 
@@ -87,5 +97,7 @@ export {
   mainElements,
   modalBigImageElementWrap,
   classForm,
-  formElement
+  formElementClass
+  ,
+  scaleElements
 };

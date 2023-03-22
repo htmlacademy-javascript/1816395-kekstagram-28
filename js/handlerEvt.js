@@ -1,14 +1,17 @@
 const evtHandler = {
   onClick: function (element, func, className) {
     element.addEventListener('click', (evt) => {
-      // evt.preventDefault();
       if (evt.target.classList.contains(className)) {
+        evt.preventDefault();
         func(evt.target);
       }
       if (!className) {
         func();
       }
     });
+  },
+  onClickLocal:function (element,func) {
+    element.addEventListener('click',func);
   },
   onChange: function (element, func, className) {
     element.addEventListener('change', (evt) => {
