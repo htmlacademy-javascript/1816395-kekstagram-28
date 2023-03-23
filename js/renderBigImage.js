@@ -76,7 +76,7 @@ const closeBigImage = () => {
 
 const openBigImage = (thumbnail) => {
   // console.log(thumbnail)
-  console.log(util.getCurrentPicture(DATA,thumbnail));
+  // console.log(util.getCurrentPicture(DATA,thumbnail));
   renderBigImage(util.getCurrentPicture(DATA,thumbnail));
   util.openModal(modalBigImageElementWrap, mainElements.body);
 };

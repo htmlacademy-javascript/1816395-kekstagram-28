@@ -4,6 +4,8 @@ import './util.js';
 import './renderBigImage.js';
 import './renderUpload.js';
 import './handlerScale.js';
+import './handlerForm.js';
+
 
 // console.log(data)
 generateDomThumbnails(DATA);

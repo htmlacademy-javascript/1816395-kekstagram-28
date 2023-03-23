@@ -1,16 +1,17 @@
 import { evtHandler } from './handlerEvt.js';
-import { util } from './util.js';
-import { scaleElements, formElementClass } from './elementsSettings.js';
+import { scaleElement } from './elementsSettings.js';
 import { imagePreview } from './renderUpload.js';
 
 const
-  modalForm = util.getElement(formElementClass.uploadImageEditClass),
-  scaleUp = util.getElement(scaleElements.scaleUpClass, modalForm),
-  scaleDown = util.getElement(scaleElements.scaleDownClass, modalForm),
-  scaleValue = util.getElement(scaleElements.scaleValueClass, modalForm);
+  scaleUp = scaleElement.scaleUp,
+  scaleDown = scaleElement.scaleDown,
+  scaleValue = scaleElement.scaleValue,
+  scaleDefault = scaleElement.DEFAULT_SCALE_VALUE,
+  scaleMin = scaleElement.MIN_SCALE_VALUE,
+  scaleMax = scaleElement.MAX_SCALE_VALUE;
 
 
-scaleValue.value = `${scaleElements.DEFAULT_SCALE_VALUE}%`;
+scaleValue.value = `${scaleDefault}%`;
 
 
 function renderValue(value) {
@@ -31,7 +32,7 @@ const renderScaleImage = (image, currentValue) => {
 const
   addScale = () => {
     let currentValue = getValue(scaleValue.value);
-    if (currentValue < scaleElements.MAX_SCALE_VALUE) {
+    if (currentValue < scaleMax) {
       currentValue += 25;
       renderScaleImage(imagePreview, currentValue);
       renderValue(currentValue);
@@ -42,7 +43,7 @@ const
 const
   downScale = () => {
     let currentValue = getValue(scaleValue.value);
-    if (currentValue > scaleElements.MIN_SCALE_VALUE) {
+    if (currentValue > scaleMin) {
       currentValue -= 25;
       renderScaleImage(imagePreview, currentValue);
       renderValue(currentValue);
@@ -50,8 +51,8 @@ const
   };
 
 const resetScale = () => {
-  renderValue(scaleElements.DEFAULT_SCALE_VALUE);
-  renderScaleImage(imagePreview, scaleElements.DEFAULT_SCALE_VALUE);
+  renderValue(scaleDefault);
+  renderScaleImage(imagePreview, scaleDefault);
   evtHandler.removeListener(scaleUp, 'click', addScale);
   evtHandler.removeListener(scaleDown, 'click', downScale);
 };

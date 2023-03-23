@@ -3,14 +3,14 @@ import { mainElements, modalForm , formElement} from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
 import { resetScale } from './handlerScale.js';
 
-const hashtag = /^#[a-zа-я0-9]{1,19}$/i;
+
 const
   uploadFile = formElement.uploadFile,
   imagePreview = formElement.imagePreview,
   previewBtnCancel = formElement.previewBtnCancel,
   effectsPreview = formElement.effectsPreview;
 
-const testImageContent = (uploadedImage) => {
+const getImageContent = (uploadedImage) => {
   imagePreview.src = window.URL.createObjectURL(uploadedImage);
 };
 
@@ -23,7 +23,7 @@ const generatePreviewEffects = (uploadedImage) => {
 };
 
 const openModalForm = () => {
-  testImageContent(uploadFile.files[0]);
+  getImageContent(uploadFile.files[0]);
   generatePreviewEffects(uploadFile.files[0]);
   util.openModal(modalForm, mainElements.body);
 };
@@ -31,6 +31,7 @@ const openModalForm = () => {
 const closeModalForm = () => {
   util.closeModal(modalForm, mainElements.body);
   resetScale();
+  imagePreview.src = '';
 };
 
 evtHandler.onChange(mainElements.main, openModalForm);

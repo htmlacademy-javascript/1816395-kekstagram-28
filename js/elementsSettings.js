@@ -1,7 +1,13 @@
 import { util } from './util.js';
+
+
+const getElement = util.getElement;
+const getElements = util.getElements;
+
+
 const mainElements = {
-  main: util.getElement('main'),
-  body: util.getElement('body')
+  main: getElement('main'),
+  body: getElement('body')
 };
 
 
@@ -16,55 +22,78 @@ const templateClass = {
 };
 
 const thumbnailElement = {
-  container: util.getElement(templateClass.classContainer),
-  template: util.getElement(
+  container: getElement(templateClass.classContainer),
+  template: getElement(
     templateClass.classTemplateContent,
-    util.getElement(templateClass.idTemplate).content),
+    getElement(templateClass.idTemplate).content
+  ),
   getCommentsWrap: function (parent) {
-    return util.getElement(templateClass.classCommentsWrap, parent);
+    return getElement(
+      templateClass.classCommentsWrap,
+      parent
+    );
   }
 };
 const classModalBigImage = {
-  wrap:
-    '.big-picture',
-  image:
-    '.picture__img',
-  imageTag:
-    'img',
-  likes:
-    '.likes-count',
-  commentsCount:
-    '.social__comment-count',
-  comments:
-    '.social__comments',
-  description:
-    '.social__caption',
-  avatar:
-    '.social__picture',
-  closeButton:
-    '.big-picture__cancel',
-  commentsLoaderButton:
-    '.social__comments-loader',
-  socialPicture:
-    '.social__picture',
-  socialText:
-    '.social__text',
-  socialComment:
-    '.social__comment'
+  wrap: '.big-picture',
+  image: '.picture__img',
+  imageTag: 'img',
+  likes: '.likes-count',
+  commentsCount: '.social__comment-count',
+  comments: '.social__comments',
+  description: '.social__caption',
+  avatar: '.social__picture',
+  closeButton: '.big-picture__cancel',
+  commentsLoaderButton: '.social__comments-loader',
+  socialPicture: '.social__picture',
+  socialText: '.social__text',
+  socialComment: '.social__comment'
 
 };
-const modalBigImageElementWrap = util.getElement(classModalBigImage.wrap);
+const modalBigImageElementWrap = getElement(classModalBigImage.wrap);
+
+
 const modalBigImageElement = {
-  imageElement: util.getElement(classModalBigImage.image, modalBigImageElementWrap),
-  pictureElement: util.getElement(classModalBigImage.imageTag, modalBigImageElementWrap),
-  imageLikes: util.getElement(classModalBigImage.likes, modalBigImageElementWrap),
-  imageAvatar: util.getElement(classModalBigImage.avatar, modalBigImageElementWrap),
-  imageCommentsCount: util.getElement(classModalBigImage.commentsCount, modalBigImageElementWrap),
-  imageComments: util.getElement(classModalBigImage.comments, modalBigImageElementWrap),
-  imageDescription: util.getElement(classModalBigImage.description, modalBigImageElementWrap),
-  imageCloseButton: util.getElement(classModalBigImage.closeButton, modalBigImageElementWrap),
-  imageCommentsLoaderButton: util.getElement(classModalBigImage.commentsLoaderButton, modalBigImageElementWrap),
-  imageTag: util.getElement(classModalBigImage.imageTag, modalBigImageElementWrap)
+  imageElement: getElement(
+    classModalBigImage.image,
+    modalBigImageElementWrap
+  ),
+  pictureElement: getElement(
+    classModalBigImage.imageTag,
+    modalBigImageElementWrap
+  ),
+  imageLikes: getElement(
+    classModalBigImage.likes,
+    modalBigImageElementWrap
+  ),
+  imageAvatar: getElement(
+    classModalBigImage.avatar,
+    modalBigImageElementWrap
+  ),
+  imageCommentsCount: getElement(
+    classModalBigImage.commentsCount,
+    modalBigImageElementWrap
+  ),
+  imageComments: getElement(
+    classModalBigImage.comments,
+    modalBigImageElementWrap
+  ),
+  imageDescription: getElement(
+    classModalBigImage.description,
+    modalBigImageElementWrap
+  ),
+  imageCloseButton: getElement(
+    classModalBigImage.closeButton,
+    modalBigImageElementWrap
+  ),
+  imageCommentsLoaderButton: getElement(
+    classModalBigImage.commentsLoaderButton,
+    modalBigImageElementWrap
+  ),
+  imageTag: getElement(
+    classModalBigImage.imageTag,
+    modalBigImageElementWrap
+  )
 };
 const classForm = {
   uploadPicture: '.img-upload__title',
@@ -72,30 +101,75 @@ const classForm = {
 
 const
   formElementClass = {
+    uploadFormClass: '.img-upload__form',
     uploadImageClass: '.img-upload__input',
     uploadImageEditClass: '.img-upload__overlay',
     imagePreviewWrapClass: '.img-upload__preview',
     uploadImageCancelBTNClass: '.img-upload__cancel',
-    previewEffectsClass: '.effects__preview'
+    previewEffectsClass: '.effects__preview',
+    imageTagsClass: '.text__hashtags',
+    imageCommentClass: '.text__description'
   };
 
 const
-  modalForm = util.getElement(formElementClass.uploadImageEditClass);
+  modalForm = getElement(formElementClass.uploadImageEditClass);
 
 
 const
   formElement = {
-    uploadFile: util.getElement(formElementClass.uploadImageClass),
-    imagePreview: util.getElement('img', util.getElement(formElementClass.imagePreviewWrapClass)),
-    previewBtnCancel: util.getElement(formElementClass.uploadImageCancelBTNClass, modalForm),
-    effectsPreview: util.getElements('span', modalForm)
+    uploadFile: getElement(
+      formElementClass.uploadImageClass
+    ),
+    imagePreview: getElement(
+      'img',
+      getElement(formElementClass.imagePreviewWrapClass)
+    ),
+    previewBtnCancel: getElement(
+      formElementClass.uploadImageCancelBTNClass,
+      modalForm
+    ),
+    effectsPreview: getElements(
+      'span',
+      modalForm
+    ),
+    imageTags: getElement(
+      formElementClass.imageCommentsClass,
+      modalForm
+    ),
+    imageComment: getElement(
+      formElementClass.imageCommentClass,
+      modalForm
+    ),
+    uploadForm: getElement(
+      formElementClass.uploadFormClass
+    ),
+    formInputs: getElements(
+      'input',
+      modalForm
+    )
+
   };
 
 
-const scaleElements = {
+const scaleElementsClass = {
   scaleUpClass: '.scale__control--bigger',
   scaleDownClass: '.scale__control--smaller',
-  scaleValueClass: '.scale__control--value',
+  scaleValueClass: '.scale__control--value'
+};
+
+const scaleElement = {
+  scaleUp: getElement(
+    scaleElementsClass.scaleUpClass,
+    modalForm
+  ),
+  scaleDown: getElement(
+    scaleElementsClass.scaleDownClass,
+    modalForm
+  ),
+  scaleValue: getElement(
+    scaleElementsClass.scaleValueClass,
+    modalForm
+  ),
   DEFAULT_SCALE_VALUE: 100,
   MIN_SCALE_VALUE: 25,
   MAX_SCALE_VALUE: 100
@@ -113,5 +187,5 @@ export {
   formElementClass,
   modalForm,
   formElement,
-  scaleElements
+  scaleElement
 };
