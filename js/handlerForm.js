@@ -43,7 +43,7 @@ pristine.addValidator(
 
 const formOnsubmit = (evt) => {
   evt.preventDefault();
-  const isValid = pristine.validate(formInputs.value);
+  const isValid = pristine.validate();
   if (isValid) {
     console.log('форма валидна');
   } else {
@@ -51,7 +51,7 @@ const formOnsubmit = (evt) => {
   }
 };
 form.addEventListener('submit', formOnsubmit);
-evtHandler.onChange(form,pristine.validate);
+evtHandler.onChange(form, pristine.validate);
 
 
 
