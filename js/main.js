@@ -1,8 +1,13 @@
-import { getPictures } from './generateMockData.js';
-import { generateDom } from './thumbnails.js';
+import { DATA } from './generateMockData.js';
+import { generateDomThumbnails } from './renderThumbnails.js';
+import './util.js';
 import './renderBigImage.js';
+import './renderUpload.js';
+import './handlerScale.js';
+import './handlerFormValidator.js';
+import './handlerFormEffects.js';
 
-const data = getPictures();
+
 // console.log(data)
-generateDom(data);
+generateDomThumbnails(DATA);
 // renderBigImage();
