@@ -111,6 +111,7 @@ const
         showSlider(effectsSlider);
         break;
       } else {
+        formInputEffect.value = 'none';
         hideSlider(effectsSlider);
         imagePreview.style = 'filter:';
       }
