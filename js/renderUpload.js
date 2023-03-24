@@ -2,29 +2,23 @@ import { util } from './util.js';
 import { mainElements, modalForm , formElement} from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
 import { resetScale } from './handlerScale.js';
+import { handlerFormEffects } from './handlerFormEffects.js';
 
 
 const
   uploadFile = formElement.uploadFile,
   imagePreview = formElement.imagePreview,
-  previewBtnCancel = formElement.previewBtnCancel,
-  effectsPreview = formElement.effectsPreview;
+  previewBtnCancel = formElement.previewBtnCancel;
+
 
 const getImageContent = (uploadedImage) => {
   imagePreview.src = window.URL.createObjectURL(uploadedImage);
 };
 
-const generatePreviewEffects = (uploadedImage) => {
-  effectsPreview.forEach((effectPreview) => {
-    effectPreview.style.cssText =
-      `background-image : url(${window.URL.createObjectURL(uploadedImage)})`;
-    // console.log(effectPreview.style);
-  });
-};
 
 const openModalForm = () => {
   getImageContent(uploadFile.files[0]);
-  generatePreviewEffects(uploadFile.files[0]);
+  handlerFormEffects.generatePreviewEffects(uploadFile.files[0]);
   util.openModal(modalForm, mainElements.body);
 };
 

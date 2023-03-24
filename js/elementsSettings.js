@@ -106,7 +106,6 @@ const
     uploadImageEditClass: '.img-upload__overlay',
     imagePreviewWrapClass: '.img-upload__preview',
     uploadImageCancelBTNClass: '.img-upload__cancel',
-    previewEffectsClass: '.effects__preview',
     imageTagsClass: '.text__hashtags',
     imageCommentClass: '.text__description'
   };
@@ -128,10 +127,7 @@ const
       formElementClass.uploadImageCancelBTNClass,
       modalForm
     ),
-    effectsPreview: getElements(
-      'span',
-      modalForm
-    ),
+
     imageTags: getElement(
       formElementClass.imageTagsClass,
       modalForm
@@ -175,6 +171,17 @@ const scaleElement = {
   MAX_SCALE_VALUE: 100
 };
 
+const effectsPreviewClass = {
+  previewEffectsClass: '.effects__preview'
+};
+
+const effectsElement = {
+  effectsPreview: getElements(
+    'span',
+    modalForm
+  ),
+};
+
 
 export {
   thumbnailElement,
@@ -187,5 +194,6 @@ export {
   formElementClass,
   modalForm,
   formElement,
-  scaleElement
+  scaleElement,
+  effectsElement
 };

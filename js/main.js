@@ -5,6 +5,7 @@ import './renderBigImage.js';
 import './renderUpload.js';
 import './handlerScale.js';
 import './handlerFormValidator.js';
+import './handlerFormEffects.js';
 
 
 // console.log(data)

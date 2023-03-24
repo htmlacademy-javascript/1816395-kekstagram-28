@@ -43,6 +43,8 @@ pristine.addValidator(
 
 const formOnsubmit = (evt) => {
   evt.preventDefault();
+  const data = new FormData(form)
+  console.log(data.get('scale'))
   if(pristine.validate()){
     form.submit();
   }
