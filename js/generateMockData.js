@@ -79,10 +79,7 @@ const getAvatar = (authorAvatar = '') => {
   }
   return function generateAvatars() {
     let Avatar = Avatars[util.getRandom(Avatars.length)];
-    // console.log('new :' + Avatar);
-    // console.log('author :' + authorAvatar);
     while (Avatar.toString() === authorAvatar.toString()) {
-      // console.log(Avatar)
       Avatar = Avatars[util.getRandom(Avatars.length)];
     }
     return Avatar;
@@ -109,7 +106,6 @@ const getName = () => function generateName() {
 };
 
 const getComments = (authorAvatar) => {
-  // console.log(authorAvatar);
   const comments = [];
   const id = getRandomUniqId;
   return function getComment() {
@@ -144,10 +140,6 @@ const getPictures = () => {
     newPicture.url = url();
     newPicture.description = description();
     newPicture.likes = likes();
-    // if (!newPicture.likes) {
-    //   newPicture.likes = likes();
-    //   // console.log(newPicture.id);
-    // }
     newPicture.comments = comments();
     pictures.push(newPicture);
   }

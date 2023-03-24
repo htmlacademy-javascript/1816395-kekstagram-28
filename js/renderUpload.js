@@ -34,13 +34,3 @@ evtHandler.onKeydown(previewBtnCancel, util.isEnter, closeModalForm);
 evtHandler.onKeydown(document, util.isEscape, closeModalForm);
 
 export { imagePreview, modalForm };
-// uploadFile.addEventListener('change', (evt) => {
-//   if (evt.target.value !== '') {
-//     .classList.remove('hidden');
-//     imagePreview.src = window.URL.createObjectURL(uploadFile.files[0]);
-//     // uploadFile.files[0];
-//     // console.log()
-//   }
-// });
-
-// formEditPicture.classList.remove('hidden');
