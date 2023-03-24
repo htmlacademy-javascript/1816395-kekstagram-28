@@ -68,7 +68,7 @@ const showSlider = (slider) => {
   slider.classList.remove('hidden');
 };
 
-const updateSlider = ({ minValue, maxValue, stepValue, specialSymbol = '', filter }) => {
+const updateSlider = ({ minValue, maxValue, stepValue, specialSymbolValue = '', filter }) => {
   effectsSlider.noUiSlider.updateOptions(
     {
       range: {
@@ -80,7 +80,7 @@ const updateSlider = ({ minValue, maxValue, stepValue, specialSymbol = '', filte
     }
   );
   effectsSlider.noUiSlider.on('update', (...rest) => {
-    const filterValue = `${filter}(${rest[0]}${specialSymbol})`;
+    const filterValue = `${filter}(${rest[0]}${specialSymbolValue})`;
     imagePreview.style.filter = filterValue;
     formInputEffectValue.value = rest[0];
   });
@@ -102,18 +102,17 @@ const
 const
   renderEffect = (effect) => {
     const currentEffect = effect.classList[1];
-    const previewClass = imagePreview;
-    previewClass.classList = {};
-    previewClass.classList.add(currentEffect);
+    imagePreview.classList = {};
+    imagePreview.classList.add(currentEffect);
     for (effect in effectsStyle) {
       if (currentEffect.includes(effect)) {
-        // console.log(effect);
         formInputEffect.value = effect;
         updateSlider(effectsStyle[effect]);
         showSlider(effectsSlider);
         break;
       } else {
         hideSlider(effectsSlider);
+        imagePreview.style = 'filter:';
       }
     }
   };
