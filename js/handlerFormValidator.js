@@ -5,8 +5,6 @@ import { evtHandler } from './handlerEvt.js';
 const
   form = formElement.uploadForm,
   imageTags = formElement.imageTags,
-  imageComment = formElement.imageComment,
-  formInputs = formElement.formInputs,
   hashtag = /^#[a-zа-я0-9]{1,19}$/i,
   errorMessage = 'некоректно заполенены хэштеги',
   maxCountTags = 5;
@@ -15,7 +13,7 @@ const
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper'
+  errorTextClass: 'img-upload__field-wrapper__error'
 });
 
 const isValidTag = (tag) => hashtag.test(tag);
@@ -35,6 +33,8 @@ const validateTags = (value) => {
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 
 };
+
+
 pristine.addValidator(
   imageTags,
   validateTags,
@@ -43,19 +43,11 @@ pristine.addValidator(
 
 const formOnsubmit = (evt) => {
   evt.preventDefault();
-  const isValid = pristine.validate();
-  if (isValid) {
-    console.log('форма валидна');
-  } else {
-    console.log('форма не валидна');
+  if(pristine.validate()){
+    form.submit();
   }
 };
-form.addEventListener('submit', formOnsubmit);
+
+evtHandler.onSubmit(form, formOnsubmit);
 evtHandler.onChange(form, pristine.validate);
 
-
-
-//   return false;
-// };
-// console.log(form)
-// evtHandler.onSubmit(form, formOnsubmit);

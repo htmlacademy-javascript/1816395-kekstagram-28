@@ -4,7 +4,7 @@ import './util.js';
 import './renderBigImage.js';
 import './renderUpload.js';
 import './handlerScale.js';
-import './handlerForm.js';
+import './handlerFormValidator.js';
 
 
 // console.log(data)

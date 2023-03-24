@@ -33,7 +33,9 @@ const evtHandler = {
     }, true);
   },
   onSubmit: function (form, func) {
-    form.addEventListener('submit', func());
+    form.addEventListener('submit', (evt)=>{
+      func(evt);
+    });
   },
   removeListener: function (element, listener, func) {
     element.removeEventListener(listener, func);

@@ -133,7 +133,7 @@ const
       modalForm
     ),
     imageTags: getElement(
-      formElementClass.imageCommentsClass,
+      formElementClass.imageTagsClass,
       modalForm
     ),
     imageComment: getElement(
