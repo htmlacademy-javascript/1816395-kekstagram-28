@@ -72,17 +72,17 @@ const getRandomUniqId = () => {
 };
 
 const getAvatar = (authorAvatar = '') => {
-  const Avatars = [];
+  const avatars = [];
   for (let i = 1; i < COUNT_AVATAR; i++) {
     const urlAvatar = `./img/avatar-${i}.svg`;
-    Avatars.push(urlAvatar);
+    avatars.push(urlAvatar);
   }
   return function generateAvatars() {
-    let Avatar = Avatars[util.getRandom(Avatars.length)];
-    while (Avatar.toString() === authorAvatar.toString()) {
-      Avatar = Avatars[util.getRandom(Avatars.length)];
+    let avatar = avatars[util.getRandom(avatars.length)];
+    while (avatar.toString() === authorAvatar.toString()) {
+      avatar = avatars[util.getRandom(avatars.length)];
     }
-    return Avatar;
+    return avatar;
   };
 };
 
@@ -111,11 +111,11 @@ const getComments = (authorAvatar) => {
   return function getComment() {
     for (let i = 0; i <= util.getRandom(MAX_COUNT_COMMENTS); i++) {
       const NewComment = {};
-      const Avatar = getAvatar(authorAvatar);
+      const avatar = getAvatar(authorAvatar);
       const Message = getMessage();
       const Name = getName();
       NewComment.id = id();
-      NewComment.Avatar = Avatar(authorAvatar);
+      NewComment.avatar = avatar(authorAvatar);
       NewComment.Message = Message();
       NewComment.name = Name();
       comments.push(NewComment);
