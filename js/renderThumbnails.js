@@ -7,12 +7,6 @@ const generatePictureElement = (className, parent, { url, description, id }) => 
   picture.src = url;
   picture.alt = description;
   picture.dataset.pictureId = id;
-  // console.log(dataPicture);
-  // picture.id = id;
-  // picture.likes = likes;
-  // picture.description = description;
-  // picture.comments = comments;
-  // picture.avatar = avatar;
   thumbnailElement.container.appendChild(parent);
 };
 

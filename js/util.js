@@ -44,7 +44,6 @@ const util = {
     return classWithoutDot;
   },
   getCurrentPicture: function (DATA, thumbnail) {
-    // console.log(+thumbnail.dataset.pictureId);
     return DATA.find((item) => item.id === +thumbnail.dataset.pictureId);
   }
 

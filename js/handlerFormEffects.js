@@ -1,7 +1,91 @@
-import { effectsElement } from './elementsSettings.js';
+import { effectsElement, effectWrap, effectsPreviewClass } from './elementsSettings.js';
+import { evtHandler } from './handlerEvt.js';
+import { util } from './util.js';
+import { formElement } from './elementsSettings.js';
 
 const
-  effectsPreview = effectsElement.effectsPreview;
+  formInputEffect = formElement.formEffectInput,
+  formInputEffectValue = formElement.formEffectInputValue,
+  imagePreview = formElement.imagePreview,
+  effectsPreview = effectsElement.effectsPreview,
+  effectClass = effectsPreviewClass.previewEffectsClass,
+  effectsSlider = effectsElement.effectsSlider,
+  effectsStyle = {
+    chrome: {
+      // filter: grayscale(1)
+      filter: 'grayscale',
+      minValue: 0,
+      maxValue: 1,
+      stepValue: 0.01
+    },
+    sepia: {
+      // filter: sepia(1)
+      filter: 'sepia',
+      minValue: 0,
+      maxValue: 1,
+      stepValue: 0.01
+    },
+    marvin: {
+      // filter: invert(100 %)
+      filter: 'invert',
+      minValue: 0,
+      maxValue: 100,
+      stepValue: 1,
+      specialSymbolValue: '%'
+    },
+    phobos: {
+      // filter: blur(3px),
+      filter: 'blur',
+      minValue: 0,
+      maxValue: 1,
+      stepValue: 0.01,
+      specialSymbolValue: 'px'
+    },
+    heat: {
+      // filter: brightness(3)
+      filter: 'brightness',
+      minValue: 1,
+      maxValue: 3,
+      stepValue: 0.02
+    }
+  };
+
+noUiSlider.create(effectsSlider, {
+  range: {
+    min: 0,
+    max: 1
+  },
+  start: 100,
+  step: 0.01,
+  connect: 'lower'
+});
+
+const hideSlider = (slider) => {
+  slider.classList.add('hidden');
+};
+
+const showSlider = (slider) => {
+  slider.classList.remove('hidden');
+};
+
+const updateSlider = ({ minValue, maxValue, stepValue, specialSymbolValue = '', filter }) => {
+  effectsSlider.noUiSlider.updateOptions(
+    {
+      range: {
+        min: minValue,
+        max: maxValue
+      },
+      start: maxValue,
+      step: stepValue
+    }
+  );
+  effectsSlider.noUiSlider.on('update', (...rest) => {
+    const filterValue = `${filter}(${rest[0]}${specialSymbolValue})`;
+    imagePreview.style.filter = filterValue;
+    formInputEffectValue.value = rest[0];
+  });
+};
+
 
 const
   handlerFormEffects = {
@@ -12,9 +96,28 @@ const
       });
       return effectsPreview;
     },
-
-
-
   };
+
+
+const
+  renderEffect = (effect) => {
+    const currentEffect = effect.classList[1];
+    imagePreview.classList = {};
+    imagePreview.classList.add(currentEffect);
+    for (effect in effectsStyle) {
+      if (currentEffect.includes(effect)) {
+        formInputEffect.value = effect;
+        updateSlider(effectsStyle[effect]);
+        showSlider(effectsSlider);
+        break;
+      } else {
+        formInputEffect.value = 'none';
+        hideSlider(effectsSlider);
+        imagePreview.style = 'filter:';
+      }
+    }
+  };
+hideSlider(effectsSlider);
+evtHandler.onClick(effectWrap, renderEffect, util.filterClassName(effectClass));
 
 export { handlerFormEffects };

@@ -2,17 +2,7 @@ import { util } from './util.js';
 import { evtHandler } from './handlerEvt.js';
 import { classModalBigImage, modalBigImageElement, mainElements, modalBigImageElementWrap } from './elementsSettings.js';
 import { DATA } from './generateMockData.js';
-// const bigPictureWrap = util.getElement('.big-picture');
-// const main = util.getElement('main');
-// const picture = modalBigImageElement.pictureElement;
-// const pictureLikes = modalBigImageElement.imageLikes;
-// const pictureCommentsCount = modalBigImageElement.imageComments;
-// const pictureComments = util.getElement('.social__comments', bigPictureWrap);
-// const pictureDescription = util.getElement('.social__caption', bigPictureWrap);
-// const pictureAvatar = modalBigImageElement.imageAvatar;
-// const buttonClosePicture = util.getElement('.big-picture__cancel', bigPictureWrap);
-// const body = util.getElement('body');
-// const socialCommentsLoader = util.getElement('.social__comments-loader', bigPictureWrap);
+
 let currentPicture;
 
 const renderAvatar = (comment, parent) => {
@@ -56,11 +46,9 @@ const renderBigImage = (thumbnail) => {
   modalBigImageElement.pictureElement.alt = currentPicture.alt;
   modalBigImageElement.imageLikes.textContent = currentPicture.likes;
   modalBigImageElement.imageDescription.textContent = currentPicture.description;
-  // console.log(currentPicture)
   modalBigImageElement.imageAvatar.src = currentPicture.avatar;
   modalBigImageElement.imageComments.textContent = `${currentPicture.comments.length} из 125 комментариев`;
   renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
-  // const test = util.getCurrentPicture(DATA,thumbnail);
 
 };
 
@@ -75,8 +63,6 @@ const closeBigImage = () => {
 
 
 const openBigImage = (thumbnail) => {
-  // console.log(thumbnail)
-  // console.log(util.getCurrentPicture(DATA,thumbnail));
   renderBigImage(util.getCurrentPicture(DATA,thumbnail));
   util.openModal(modalBigImageElementWrap, mainElements.body);
 };
@@ -86,5 +72,4 @@ evtHandler.onClick(modalBigImageElement.imageCloseButton, closeBigImage);
 evtHandler.onKeydown(modalBigImageElement.imageCloseButton, util.isEnter, closeBigImage);
 evtHandler.onKeydown(document, util.isEscape, closeBigImage);
 evtHandler.onClick(modalBigImageElement.imageCommentsLoaderButton, updateComments);
-// console.log(util.filterClassName(classModalBigImage.image));
 

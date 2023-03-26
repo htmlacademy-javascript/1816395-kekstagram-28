@@ -4,6 +4,7 @@ const evtHandler = {
       if (evt.target.classList.contains(className)) {
         evt.preventDefault();
         func(evt.target);
+
       }
       if (!className) {
         func();
@@ -16,7 +17,6 @@ const evtHandler = {
   onChange: function (element, func, className) {
     element.addEventListener('change', (evt) => {
       if (evt.target.value !== '') {
-        // debugger
         func();
       }
       if (!className) {

@@ -8,6 +8,4 @@ import './handlerFormValidator.js';
 import './handlerFormEffects.js';
 
 
-// console.log(data)
 generateDomThumbnails(DATA);
-// renderBigImage();

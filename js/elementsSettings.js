@@ -107,7 +107,9 @@ const
     imagePreviewWrapClass: '.img-upload__preview',
     uploadImageCancelBTNClass: '.img-upload__cancel',
     imageTagsClass: '.text__hashtags',
-    imageCommentClass: '.text__description'
+    imageCommentClass: '.text__description',
+    imageEffectsValueClass: '.effect-level__value',
+    imageEffectClass:'.effects__radio',
   };
 
 const
@@ -142,6 +144,14 @@ const
     formInputs: getElements(
       'input',
       modalForm
+    ),
+    formEffectInputValue: getElement(
+      formElementClass.imageEffectsValueClass,
+      modalForm
+    ),
+    formEffectInput: getElement(
+      formElementClass.imageEffectClass,
+      modalForm
     )
 
   };
@@ -172,14 +182,23 @@ const scaleElement = {
 };
 
 const effectsPreviewClass = {
-  previewEffectsClass: '.effects__preview'
+  effectsWrapClass: '.effects__list',
+  previewEffectsClass: '.effects__preview',
+  sliderEffectsClass: '.img-upload__effect-level',
 };
+
+const
+  effectWrap = getElement(effectsPreviewClass.effectsWrapClass, modalForm);
 
 const effectsElement = {
   effectsPreview: getElements(
-    'span',
-    modalForm
+    effectsPreviewClass.previewEffectsClass,
+    effectWrap
   ),
+  effectsSlider: getElement(
+    effectsPreviewClass.sliderEffectsClass,
+    modalForm
+  )
 };
 
 
@@ -194,6 +213,8 @@ export {
   formElementClass,
   modalForm,
   formElement,
+  effectsPreviewClass,
   scaleElement,
-  effectsElement
+  effectsElement,
+  effectWrap
 };
