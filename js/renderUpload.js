@@ -33,4 +33,4 @@ evtHandler.onClick(previewBtnCancel, closeModalForm);
 evtHandler.onKeydown(previewBtnCancel, util.isEnter, closeModalForm);
 evtHandler.onKeydown(document, util.isEscape, closeModalForm);
 
-export { imagePreview, modalForm };
+export { imagePreview, modalForm, openModalForm, closeModalForm };
