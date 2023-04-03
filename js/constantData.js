@@ -1,3 +1,4 @@
+
 const PICTURES_COUNT = 25;
 const COUNT_AVATAR = 6;
 const MAXIMUM_MESSAGES = 2;
