@@ -109,7 +109,7 @@ const
     imageTagsClass: '.text__hashtags',
     imageCommentClass: '.text__description',
     imageEffectsValueClass: '.effect-level__value',
-    imageEffectClass:'.effects__radio',
+    imageEffectClass: '.effects__radio',
   };
 
 const
@@ -201,6 +201,34 @@ const effectsElement = {
   )
 };
 
+const
+  templateErrorClass = {
+    templateClassWrap: '.error',
+    templateErrorContentClass: '.error',
+    templateErrorContainer: '.error__inner',
+    templateErrorCloseButtonClass: '.error__button',
+    templateErrorId: '#error'
+  };
+
+
+const
+  templateErrorLoad = {
+
+    template:
+
+      getElement(
+        templateErrorClass.templateErrorId
+      ).content
+    ,
+
+    getCloseButton: function (parent) {
+      return getElement(
+        templateErrorClass.templateErrorCloseButtonClass,
+        parent
+      );
+    }
+  };
+
 
 export {
   thumbnailElement,
@@ -216,5 +244,7 @@ export {
   effectsPreviewClass,
   scaleElement,
   effectsElement,
-  effectWrap
+  effectWrap,
+  templateErrorLoad,
+  templateErrorClass
 };

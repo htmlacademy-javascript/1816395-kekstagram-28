@@ -23,13 +23,17 @@ const util = {
       return (count = count + step);
     };
   },
-  openModal: function (modal, body) {
+  openModal: function (modal = '', body) {
     body.classList.add('modal-open');
-    modal.classList.remove('hidden');
+    if (modal) {
+      modal.classList.remove('hidden');
+    }
   },
-  closeModal: function (modal, body) {
+  closeModal: function (modal = '', body) {
     body.classList.remove('modal-open');
-    modal.classList.add('hidden');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
   },
   openModalInput: function (modalForm, body) {
     body.classList.add('modal-open');

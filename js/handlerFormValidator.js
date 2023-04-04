@@ -1,7 +1,6 @@
 import { formElement } from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
-import { util } from './util.js';
-import { mainElements } from './elementsSettings.js';
+import { sendData } from './api.js';
 
 
 const
@@ -48,25 +47,7 @@ const setUserFormSubmit = (onSuccess) => {
     evt.preventDefault();
     if (pristine.validate()) {
       const formData = new FormData(evt.target);
-      // form.submit();
-      fetch(
-        'https://28.javascript.pages.academy/kekstagram',
-        {
-          method: 'POST',
-          body: formData,
-        }
-      )
-        .then((response) => {
-          if (response.ok) {
-            onSuccess();
-          } else {
-            util.showAlert('Не удалось отправить форму. Попробуйте ещё раз', mainElements.body);
-          }
-        }
-        )
-        .catch(() => {
-          util.showAlert('Не удалось отправить форму. Попробуйте ещё раз', mainElements.body);
-        });
+      sendData(formData, onSuccess);
     }
   };
 

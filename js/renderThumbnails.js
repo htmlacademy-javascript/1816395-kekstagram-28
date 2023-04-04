@@ -1,5 +1,9 @@
 import { util } from './util.js';
 import { thumbnailElement, templateClass } from './elementsSettings.js';
+import './renderBigImage.js';
+import './renderUpload.js';
+import './handlerScale.js';
+import './handlerFormEffects.js';
 
 
 const generatePictureElement = (className, parent, { url, description, id }) => {
