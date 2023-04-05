@@ -203,11 +203,11 @@ const effectsElement = {
 
 const
   templateErrorClass = {
-    templateClassWrap: '.error',
-    templateErrorContentClass: '.error',
-    templateErrorContainer: '.error__inner',
-    templateErrorCloseButtonClass: '.error__button',
-    templateErrorId: '#error'
+    templateWrap: '.error',
+    templateContent: '.error',
+    templateContainer: '.error__inner',
+    templateCloseButton: '.error__button',
+    templateId: '#error'
   };
 
 
@@ -217,18 +217,25 @@ const
     template:
 
       getElement(
-        templateErrorClass.templateErrorId
+        templateErrorClass.templateId
       ).content
-    ,
-
-    getCloseButton: function (parent) {
-      return getElement(
-        templateErrorClass.templateErrorCloseButtonClass,
-        parent
-      );
-    }
   };
 
+const
+  templateUploadClass = {
+    templateWrap: '.img-upload__message--loading',
+    templateId: '#messages'
+  },
+  templateUpload = getElement(templateUploadClass.templateId).content;
+
+const
+  templateSuccessClass = {
+    templateWrap : '.success',
+    templateContainer: '.success__inner',
+    templateId : '#success',
+    templateCloseButton: '.success__button'
+  },
+  templateSuccess = getElement(templateSuccessClass.templateId).content;
 
 export {
   thumbnailElement,
@@ -246,5 +253,9 @@ export {
   effectsElement,
   effectWrap,
   templateErrorLoad,
-  templateErrorClass
+  templateErrorClass,
+  templateUploadClass,
+  templateUpload,
+  templateSuccessClass,
+  templateSuccess
 };

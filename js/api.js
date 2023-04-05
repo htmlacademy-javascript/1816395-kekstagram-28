@@ -4,14 +4,13 @@ import { setUserFormSubmit } from './handlerFormValidator.js';
 import { closeModalForm } from './renderUpload.js';
 import { mainElements } from './elementsSettings.js';
 import { util } from './util.js';
-import { generateErrorLoad } from './handlerMessages.js';
 
 
 const
   BASE_URL = 'https://28.javascript.pages.academy/kekstagram',
   Route = {
     GET_DATA: '/data',
-    SEND_DATA: '/',
+    SEND_DATA: '//',
   };
 
 const
@@ -49,11 +48,7 @@ const getData = (onSuccess1, onSuccess2) => {
 };
 
 
-const sendData = (body, onSuccess) => load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body)
-  .catch(
-    generateErrorLoad()
-  )
-  .finally(() => onSuccess());
+const sendData = (body) => load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body,);
 
 
 setUserFormSubmit(closeModalForm);

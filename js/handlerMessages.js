@@ -1,58 +1,82 @@
-import { templateErrorLoad, templateErrorClass } from './elementsSettings.js';
+import { templateErrorLoad, templateErrorClass, templateUpload, templateUploadClass, templateSuccess, templateSuccessClass } from './elementsSettings.js';
 import { util } from './util.js';
 import { mainElements } from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
 
 const
   body = mainElements.body,
-  templateError = templateErrorLoad.template;
-
-let
-  messageElement = {},
-  container = {},
-  wrap = {};
+  templateError = templateErrorLoad.template,
+  templateUploading = templateUpload,
+  templateSuccession = templateSuccess;
 
 
-const eraseMessage = () => {
-  // console.log('+');
-  evtHandler.removeListener(
-    container,
-    'click',
-    eraseMessage,
-  );
-  body.removeChild(wrap);
+const eraseMessage = (wrapTemplate, containerTemplate = null) => function erasingMessage() {
+  if (containerTemplate) {
+    evtHandler.removeListener(
+      containerTemplate,
+      'click',
+      eraseMessage,
+    );
+  }
+
+  body.removeChild(wrapTemplate);
   util.closeModal('', body);
 };
 
-const renderMessage = (newElement) => {
+
+const renderMessage = (newElement, templateClass) => {
   body.appendChild(newElement);
   util.openModal('', body);
-  // console.log(util.getElement('.error__inner'));
-  // evtHandler.onClick(mainElements.main, eraseMessage,templateErrorClass.templateErrorContentClass);
-  // util.getElement('.error__inner').addEventListener('click', () => {
-  //   eraseMessage(util.getElement('.error'));
-  // })
-  container = util.getElement(templateErrorClass.templateErrorContainer);
-  wrap = util.getElement(templateErrorClass.templateClassWrap);
-  evtHandler.onClickLocal(
-    container,
-    eraseMessage
-  );
-}
 
+  const
+    containerTemplate = util.getElement(templateClass.templateContainer),
+    wrapTemplate = util.getElement(templateClass.templateWrap);
+  if (containerTemplate) {
+    evtHandler.onClickLocal(
+      containerTemplate,
+      eraseMessage(wrapTemplate, containerTemplate,)
+    );
+    // evtHandler.onKeydown(document,util.isEscape,eraseMessage(wrapTemplate));
+    // console.log(wrapTemplate)
+    wrapTemplate.addEventListener('keydown', (evt) => {
+      evt.stopPropagation();
+      if (evt.key === 'esc') {
+        console.log(evt.key)
+        eraseMessage(wrapTemplate)();
+      }
+    });
+  }
 
-const generateErrorLoad = () => {
-  messageElement = templateError.cloneNode(true);
-  renderMessage(messageElement);
 };
 
 
-// mainElements.main.addEventListener('click', () => { eraseMessage(util.getElement(templateErrorClass.templateErrorContentClass)) })
-// evtHandler.onClick(
-//   mainElements.main,
-//   eraseMessage(
-//     util.getElement('.error__inner')
-//   ),
-//   '.error__button'
-// );
-export { generateErrorLoad };
+const generateMessage = (template, templateClass) => {
+  const messageElement = template.cloneNode(true);
+  renderMessage(messageElement, templateClass);
+};
+
+
+const
+  generateErrorLoadMessage = () => {
+    generateMessage(templateError, templateErrorClass);
+  },
+
+  generateUploadMessage = () => {
+    generateMessage(templateUploading, templateUploadClass);
+    eraseMessage(util.getElement(templateUploadClass.templateWrap));
+  },
+
+  getUploadElementMessage = () => util.getElement(templateUploadClass.templateWrap),
+
+  generateSuccessMessage = () => {
+    generateMessage(templateSuccession, templateSuccessClass);
+  };
+
+
+export {
+  generateErrorLoadMessage,
+  generateUploadMessage,
+  eraseMessage,
+  getUploadElementMessage,
+  generateSuccessMessage
+};

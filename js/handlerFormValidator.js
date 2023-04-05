@@ -1,6 +1,7 @@
-import { formElement } from './elementsSettings.js';
+import { formElement, mainElements } from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
 import { sendData } from './api.js';
+import { eraseMessage, generateErrorLoadMessage, generateUploadMessage, getUploadElementMessage, generateSuccessMessage } from './handlerMessages.js';
 
 
 const
@@ -43,11 +44,26 @@ pristine.addValidator(
 );
 
 const setUserFormSubmit = (onSuccess) => {
+
   const formOnsubmit = (evt) => {
+    generateUploadMessage();
     evt.preventDefault();
     if (pristine.validate()) {
       const formData = new FormData(evt.target);
-      sendData(formData, onSuccess);
+      sendData(formData)
+        .then((response) => {
+          if (response) {
+            onSuccess();
+            generateSuccessMessage();
+          } else {
+            generateErrorLoadMessage();
+          }
+        }
+        )
+        .finally(() => {
+          eraseMessage(getUploadElementMessage())();
+        }
+        );
     }
   };
 

@@ -12,7 +12,7 @@ const evtHandler = {
     });
   },
   onClickLocal: function (element, func) {
-    element.addEventListener('click', func);
+    element.addEventListener('click', func, true);
   },
   onChange: function (element, func, className) {
     element.addEventListener('change', (evt) => {
@@ -28,6 +28,7 @@ const evtHandler = {
   onKeydown: function (element, testFunc, func) {
     element.addEventListener('keydown', (evt) => {
       if (testFunc(evt)) {
+        evt.stopPropagation();
         func();
       }
     }, true);
