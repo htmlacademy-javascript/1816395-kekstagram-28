@@ -18,7 +18,9 @@ const eraseMessage = (wrapTemplate, containerTemplate = null) => function erasin
       eraseMessage,
     );
   }
-
+  // console.log('work')
+  // debugger
+  // body.removeChild(body.childNodes[30] );
   body.removeChild(wrapTemplate);
   util.closeModal('', body);
 };
@@ -36,15 +38,18 @@ const renderMessage = (newElement, templateClass) => {
       containerTemplate,
       eraseMessage(wrapTemplate, containerTemplate,)
     );
-    // evtHandler.onKeydown(document,util.isEscape,eraseMessage(wrapTemplate));
     // console.log(wrapTemplate)
-    wrapTemplate.addEventListener('keydown', (evt) => {
-      evt.stopPropagation();
-      if (evt.key === 'esc') {
-        console.log(evt.key)
-        eraseMessage(wrapTemplate)();
-      }
-    });
+    // console.log(containerTemplate)
+    evtHandler.onKeydown(document, util.isEscape, eraseMessage(wrapTemplate));
+    // console.log(wrapTemplate)
+    // containerTemplate.addEventListener('keydown', (evt) => {
+    //   console.log(evt)
+    //   evt.stopPropagation();
+    //   if (evt.key === 'esc') {
+    //     // console.log(evt.key)
+    //     eraseMessage(wrapTemplate,containerTemplate);
+    //   }
+    // });
   }
 
 };

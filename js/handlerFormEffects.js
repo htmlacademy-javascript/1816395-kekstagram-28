@@ -12,21 +12,18 @@ const
   effectsSlider = effectsElement.effectsSlider,
   effectsStyle = {
     chrome: {
-      // filter: grayscale(1)
       filter: 'grayscale',
       minValue: 0,
       maxValue: 1,
       stepValue: 0.01
     },
     sepia: {
-      // filter: sepia(1)
       filter: 'sepia',
       minValue: 0,
       maxValue: 1,
       stepValue: 0.01
     },
     marvin: {
-      // filter: invert(100 %)
       filter: 'invert',
       minValue: 0,
       maxValue: 100,
@@ -34,7 +31,6 @@ const
       specialSymbolValue: '%'
     },
     phobos: {
-      // filter: blur(3px),
       filter: 'blur',
       minValue: 0,
       maxValue: 1,
@@ -42,7 +38,6 @@ const
       specialSymbolValue: 'px'
     },
     heat: {
-      // filter: brightness(3)
       filter: 'brightness',
       minValue: 1,
       maxValue: 3,

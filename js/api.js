@@ -1,5 +1,3 @@
-// import { generateDomThumbnails } from './renderThumbnails.js';
-// import { takeData } from './renderBigImage.js';
 import { setUserFormSubmit } from './handlerFormValidator.js';
 import { closeModalForm } from './renderUpload.js';
 import { mainElements } from './elementsSettings.js';
@@ -10,7 +8,7 @@ const
   BASE_URL = 'https://28.javascript.pages.academy/kekstagram',
   Route = {
     GET_DATA: '/data',
-    SEND_DATA: '//',
+    SEND_DATA: '/',
   };
 
 const

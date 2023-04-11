@@ -1,4 +1,6 @@
-const ALERT_SHOW_TIME = 5000;
+const
+  ALERT_SHOW_TIME = 5000,
+  TIME_OUT_DELAY = 500;
 
 const util = {
   getElement: function (optionName, parent = document) {
@@ -70,7 +72,23 @@ const util = {
       alertContainer.remove();
     }, ALERT_SHOW_TIME);
   },
-
+  debounce: function (callback) {
+    let timeoutId;
+    return (...rest) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => callback.apply(this, rest), TIME_OUT_DELAY);
+    };
+  },
+  throttle: function (callback, delayBetweenFrames) {
+    let lastTime = 0;
+    return (...rest) {
+      const now = new Date();
+      if (now - lastTime >= delayBetweenFrames) {
+        callback.apply(this.rest);
+        lastTime = now;
+      }
+    };
+  }
 };
 
 
