@@ -53,8 +53,8 @@ const
     }
 
     addSelectionFilter(target);
-    util.debounce(generateDomThumbnails,500)(timeData);
-    // util.debounce(()=>generateDomThumbnails(timeData),500);
+    // util.debounce(generateDomThumbnails,500)(timeData);
+    util.debounce(()=>generateDomThumbnails(timeData),500);
     // debounce(generateDomThumbnails,1000)(timeData);
 
 
