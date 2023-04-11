@@ -4,6 +4,7 @@ import './renderBigImage.js';
 import './renderUpload.js';
 import './handlerScale.js';
 import './handlerFormEffects.js';
+import { filterMethods } from './handlerFilters.js';
 
 
 const generatePictureElement = (className, parent, { url, description, id }) => {
@@ -32,10 +33,25 @@ const generateThumbnails = (dataPicture) => {
   generatePictureLikes(templateClass.classLikes, newElement, dataPicture);
 };
 
+
+const clearThumbnailsContainer = () => {
+  const currentThumbnailContainers = util
+    .getElements(
+      templateClass.classTemplateContent,
+      thumbnailElement.container);
+  currentThumbnailContainers.forEach((thumbnailContainer) =>
+    thumbnailElement.container.removeChild(thumbnailContainer)
+  );
+};
+
 const generateDomThumbnails = (DATA) => {
-  DATA.forEach((dataPicture) => {
-    generateThumbnails(dataPicture);
-  });
+  clearThumbnailsContainer();
+  DATA
+    .forEach((dataPicture) => {
+      generateThumbnails(dataPicture);
+    });
+  filterMethods.renderFilterSection();
+
 };
 
 export { generateDomThumbnails };

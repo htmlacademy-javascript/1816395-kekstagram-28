@@ -230,12 +230,33 @@ const
 
 const
   templateSuccessClass = {
-    templateWrap : '.success',
+    templateWrap: '.success',
     templateContainer: '.success__inner',
-    templateId : '#success',
+    templateId: '#success',
     templateCloseButton: '.success__button'
   },
   templateSuccess = getElement(templateSuccessClass.templateId).content;
+
+const
+  filtersClass = {
+    section: '.img-filters',
+    filterDefault: '#filter-default',
+    filterRandom: '#filter-random',
+    filterDiscussed: '#filter-discussed',
+    formFilter: '.img-filters__form',
+    filterButton: '.img-filters__button',
+    filterSelected: '.img-filters__button--active'
+  };
+
+const filterSection = getElement(filtersClass.section);
+
+const filterElements = {
+  filterDefault: getElement(filtersClass.filterDefault),
+  filterRandom: getElement(filtersClass.filterRandom),
+  filterDiscussed: getElement(filtersClass.filterDiscussed),
+  formFilter: getElement(filtersClass.formFilter)
+
+};
 
 export {
   thumbnailElement,
@@ -257,5 +278,8 @@ export {
   templateUploadClass,
   templateUpload,
   templateSuccessClass,
-  templateSuccess
+  templateSuccess,
+  filtersClass,
+  filterSection,
+  filterElements
 };

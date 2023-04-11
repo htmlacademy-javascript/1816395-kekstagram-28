@@ -13,6 +13,13 @@ const util = {
   getRandom: function (max) {
     return Math.floor(Math.random() * max);
   },
+  shuffleArray: function (array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  },
   isEscape: function (evt) {
     return evt.key === 'Escape';
   },
@@ -72,25 +79,38 @@ const util = {
       alertContainer.remove();
     }, ALERT_SHOW_TIME);
   },
-  debounce: function (callback) {
+  debounce: function (callback, timeoutDelay) {
     let timeoutId;
     return (...rest) => {
+      console.log(TIME_OUT_DELAY)
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => callback.apply(this, rest), TIME_OUT_DELAY);
+      timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
     };
   },
   throttle: function (callback, delayBetweenFrames) {
     let lastTime = 0;
-    return (...rest) {
+    return (...rest) => {
       const now = new Date();
       if (now - lastTime >= delayBetweenFrames) {
-        callback.apply(this.rest);
+        callback.apply(this, rest);
         lastTime = now;
       }
     };
   }
 };
 
+const debounce = (fn, wait) => {
+  let timer;
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    const context = this;
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, wait);
+  };
+};
 
-export { util };
+export { util, debounce };
 
