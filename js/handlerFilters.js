@@ -61,6 +61,6 @@ export { renderDefaultThumbnails, filterMethods };
 
 evtHandler.onClick(
   mainElements.main,
-  util.debounce(filterSelected,1500),
+  util.debounce(filterSelected,500),
   util.filterClassName(filtersClass.filterButton)
 );

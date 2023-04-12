@@ -1,9 +1,9 @@
-import { util } from './util.js';
-import { thumbnailElement, templateClass } from './elementsSettings.js';
 import './renderBigImage.js';
 import './renderUpload.js';
 import './handlerScale.js';
 import './handlerFormEffects.js';
+import { util } from './util.js';
+import { thumbnailElement, templateClass } from './elementsSettings.js';
 import { filterMethods } from './handlerFilters.js';
 
 

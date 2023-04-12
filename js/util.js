@@ -1,6 +1,5 @@
 const
-  ALERT_SHOW_TIME = 5000,
-  TIME_OUT_DELAY = 500;
+  ALERT_SHOW_TIME = 5000;
 
 const util = {
   getElement: function (optionName, parent = document) {
@@ -82,7 +81,7 @@ const util = {
 
   debounce: function (callback, timeoutDelay) {
     let timeoutId;
-    return (rest) => {
+    return (...rest) => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
     };
