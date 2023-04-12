@@ -1,7 +1,7 @@
 import { filtersClass, filterSection, filterElements, mainElements } from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
 import { generateDomThumbnails } from './renderThumbnails.js';
-import { util, debounce} from './util.js';
+import { util } from './util.js';
 
 let serverData;
 
@@ -53,12 +53,7 @@ const
     }
 
     addSelectionFilter(target);
-    // util.debounce(generateDomThumbnails,500)(timeData);
-    util.debounce(()=>generateDomThumbnails(timeData),500);
-    // debounce(generateDomThumbnails,1000)(timeData);
-
-
-
+    generateDomThumbnails(timeData);
   };
 
 
@@ -66,6 +61,6 @@ export { renderDefaultThumbnails, filterMethods };
 
 evtHandler.onClick(
   mainElements.main,
-  filterSelected,
+  util.debounce(filterSelected,1500),
   util.filterClassName(filtersClass.filterButton)
 );

@@ -79,14 +79,15 @@ const util = {
       alertContainer.remove();
     }, ALERT_SHOW_TIME);
   },
+
   debounce: function (callback, timeoutDelay) {
     let timeoutId;
-    return (...rest) => {
-      console.log(TIME_OUT_DELAY)
+    return (rest) => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
     };
   },
+
   throttle: function (callback, delayBetweenFrames) {
     let lastTime = 0;
     return (...rest) => {
@@ -99,18 +100,5 @@ const util = {
   }
 };
 
-const debounce = (fn, wait) => {
-  let timer;
-  return function (...args) {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    const context = this;
-    timer = setTimeout(() => {
-      fn.apply(context, args);
-    }, wait);
-  };
-};
-
-export { util, debounce };
+export { util };
 
