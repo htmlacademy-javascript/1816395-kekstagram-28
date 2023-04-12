@@ -1,7 +1,10 @@
 import { util } from './util.js';
 import { evtHandler } from './handlerEvt.js';
-import { classModalBigImage, modalBigImageElement, mainElements, modalBigImageElementWrap } from './elementsSettings.js';
-// import { DATA } from './generateMockData.js';
+import {
+  classModalBigImage,
+  modalBigImageElement,
+  mainElements,
+  modalBigImageElementWrap } from './elementsSettings.js';
 
 
 let currentPicture;
@@ -50,7 +53,6 @@ const takeData = (data) => {
     modalBigImageElement.pictureElement.alt = currentPicture.alt;
     modalBigImageElement.imageLikes.textContent = currentPicture.likes;
     modalBigImageElement.imageDescription.textContent = currentPicture.description;
-    // modalBigImageElement.imageAvatar.src = currentPicture.avatar;
     modalBigImageElement.imageComments.textContent = `${currentPicture.comments.length} из 125 комментариев`;
     renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
 

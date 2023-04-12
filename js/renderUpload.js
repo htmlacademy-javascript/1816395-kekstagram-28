@@ -1,5 +1,5 @@
 import { util } from './util.js';
-import { mainElements, modalForm , formElement} from './elementsSettings.js';
+import { mainElements, modalForm, formElement } from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
 import { resetScale } from './handlerScale.js';
 import { handlerFormEffects } from './handlerFormEffects.js';

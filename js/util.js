@@ -1,4 +1,5 @@
-const ALERT_SHOW_TIME = 5000;
+const
+  ALERT_SHOW_TIME = 5000;
 
 const util = {
   getElement: function (optionName, parent = document) {
@@ -10,6 +11,13 @@ const util = {
   ,
   getRandom: function (max) {
     return Math.floor(Math.random() * max);
+  },
+  shuffleArray: function (array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   },
   isEscape: function (evt) {
     return evt.key === 'Escape';
@@ -23,13 +31,17 @@ const util = {
       return (count = count + step);
     };
   },
-  openModal: function (modal, body) {
+  openModal: function (modal = '', body) {
     body.classList.add('modal-open');
-    modal.classList.remove('hidden');
+    if (modal) {
+      modal.classList.remove('hidden');
+    }
   },
-  closeModal: function (modal, body) {
+  closeModal: function (modal = '', body) {
     body.classList.remove('modal-open');
-    modal.classList.add('hidden');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
   },
   openModalInput: function (modalForm, body) {
     body.classList.add('modal-open');
@@ -67,8 +79,25 @@ const util = {
     }, ALERT_SHOW_TIME);
   },
 
-};
+  debounce: function (callback, timeoutDelay) {
+    let timeoutId;
+    return (...rest) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+    };
+  },
 
+  throttle: function (callback, delayBetweenFrames) {
+    let lastTime = 0;
+    return (...rest) => {
+      const now = new Date();
+      if (now - lastTime >= delayBetweenFrames) {
+        callback.apply(this, rest);
+        lastTime = now;
+      }
+    };
+  }
+};
 
 export { util };
 

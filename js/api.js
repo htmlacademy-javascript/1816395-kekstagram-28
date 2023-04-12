@@ -1,7 +1,7 @@
-import { generateDomThumbnails } from './renderThumbnails.js';
-import { takeData } from './renderBigImage.js';
 import { setUserFormSubmit } from './handlerFormValidator.js';
 import { closeModalForm } from './renderUpload.js';
+import { mainElements } from './elementsSettings.js';
+import { util } from './util.js';
 
 
 const
@@ -15,33 +15,42 @@ const
   ErrorText = {
     GET_DATA: 'Не удалось загрузить данные. Попробуйте обновить страницу',
     SEND_DATA: 'Не удалось отправить форму. Попробуйте ещё раз',
-  };
-
-const APImethods = {
-  getData: function () {
-    fetch(
-      `${BASE_URL}${Route.GET_DATA}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error();
-        }
-        return response.json();
-      })
-      .catch(() => {
-        throw new Error(ErrorText.GET_DATA);
-      });
   },
+  Method = {
+    GET: 'GET',
+    POST: 'POST',
+  },
+  showAlert = util.showAlert;
+
+
+const load = (route, errorText, method = Method.GET, body = null) =>
+  fetch(`${BASE_URL}${route}`, { method, body })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error();
+      }
+      return response.json();
+    })
+    .catch(() => {
+      showAlert(errorText, mainElements.body);
+    });
+
+
+const getData = (onSuccess1, onSuccess2) => {
+  load(Route.GET_DATA, ErrorText.GET_DATA)
+    .then((pictures) => {
+      onSuccess1(pictures);
+      onSuccess2(pictures);
+    }
+    );
 };
 
-fetch('https://28.javascript.pages.academy/kekstagram/data')
-  .then((response) => response.json())
-  .then((pictures) => {
-    generateDomThumbnails(pictures);
-    takeData(pictures);
-  });
+
+const sendData = (body) => load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body,);
+
 
 setUserFormSubmit(closeModalForm);
 
-export { APImethods };
+export { sendData, getData };
 
 

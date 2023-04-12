@@ -1,7 +1,7 @@
 import { formElement } from './elementsSettings.js';
 import { evtHandler } from './handlerEvt.js';
-import { util } from './util.js';
-import { mainElements } from './elementsSettings.js';
+import { sendData } from './api.js';
+import { eraseMessage, generateErrorLoadMessage, generateUploadMessage, getUploadElementMessage, generateSuccessMessage } from './handlerMessages.js';
 
 
 const
@@ -44,29 +44,26 @@ pristine.addValidator(
 );
 
 const setUserFormSubmit = (onSuccess) => {
+
   const formOnsubmit = (evt) => {
+    generateUploadMessage();
     evt.preventDefault();
     if (pristine.validate()) {
       const formData = new FormData(evt.target);
-      // form.submit();
-      fetch(
-        'https://28.javascript.pages.academy/kekstagram',
-        {
-          method: 'POST',
-          body: formData,
-        }
-      )
+      sendData(formData)
         .then((response) => {
-          if (response.ok) {
+          if (response) {
             onSuccess();
+            generateSuccessMessage();
           } else {
-            util.showAlert('Не удалось отправить форму. Попробуйте ещё раз', mainElements.body);
+            generateErrorLoadMessage();
           }
         }
         )
-        .catch(() => {
-          util.showAlert('Не удалось отправить форму. Попробуйте ещё раз', mainElements.body);
-        });
+        .finally(() => {
+          eraseMessage(getUploadElementMessage())();
+        }
+        );
     }
   };
 

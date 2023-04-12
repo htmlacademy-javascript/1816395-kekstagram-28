@@ -109,7 +109,7 @@ const
     imageTagsClass: '.text__hashtags',
     imageCommentClass: '.text__description',
     imageEffectsValueClass: '.effect-level__value',
-    imageEffectClass:'.effects__radio',
+    imageEffectClass: '.effects__radio',
   };
 
 const
@@ -201,6 +201,62 @@ const effectsElement = {
   )
 };
 
+const
+  templateErrorClass = {
+    templateWrap: '.error',
+    templateContent: '.error',
+    templateContainer: '.error__inner',
+    templateCloseButton: '.error__button',
+    templateId: '#error'
+  };
+
+
+const
+  templateErrorLoad = {
+
+    template:
+
+      getElement(
+        templateErrorClass.templateId
+      ).content
+  };
+
+const
+  templateUploadClass = {
+    templateWrap: '.img-upload__message--loading',
+    templateId: '#messages'
+  },
+  templateUpload = getElement(templateUploadClass.templateId).content;
+
+const
+  templateSuccessClass = {
+    templateWrap: '.success',
+    templateContainer: '.success__inner',
+    templateId: '#success',
+    templateCloseButton: '.success__button'
+  },
+  templateSuccess = getElement(templateSuccessClass.templateId).content;
+
+const
+  filtersClass = {
+    section: '.img-filters',
+    filterDefault: '#filter-default',
+    filterRandom: '#filter-random',
+    filterDiscussed: '#filter-discussed',
+    formFilter: '.img-filters__form',
+    filterButton: '.img-filters__button',
+    filterSelected: '.img-filters__button--active'
+  };
+
+const filterSection = getElement(filtersClass.section);
+
+const filterElements = {
+  filterDefault: getElement(filtersClass.filterDefault),
+  filterRandom: getElement(filtersClass.filterRandom),
+  filterDiscussed: getElement(filtersClass.filterDiscussed),
+  formFilter: getElement(filtersClass.formFilter)
+
+};
 
 export {
   thumbnailElement,
@@ -216,5 +272,14 @@ export {
   effectsPreviewClass,
   scaleElement,
   effectsElement,
-  effectWrap
+  effectWrap,
+  templateErrorLoad,
+  templateErrorClass,
+  templateUploadClass,
+  templateUpload,
+  templateSuccessClass,
+  templateSuccess,
+  filtersClass,
+  filterSection,
+  filterElements
 };
