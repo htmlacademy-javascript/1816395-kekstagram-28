@@ -24,6 +24,7 @@ const filterMethods = {
 
 };
 
+
 const
   renderDefaultThumbnails = (data) => {
     serverData = data;
