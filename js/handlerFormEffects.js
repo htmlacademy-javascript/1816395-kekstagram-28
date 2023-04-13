@@ -10,6 +10,7 @@ const
   effectsPreview = effectsElement.effectsPreview,
   effectClass = effectsPreviewClass.previewEffectsClass,
   effectsSlider = effectsElement.effectsSlider,
+  inputsEffects = effectsElement.effectInputs,
   effectsStyle = {
     chrome: {
       filter: 'grayscale',
@@ -93,15 +94,30 @@ const
     },
   };
 
+const clearSelectionEffect = () => {
+  inputsEffects.forEach((element) => {
+    element.removeAttribute('checked');
+  });
+};
+
+const renderSelectionEffect = (effect) => {
+  clearSelectionEffect();
+  inputsEffects.forEach((element) => {
+    if (element.value === effect) {
+      element.setAttribute('checked', '');
+    }
+  });
+
+};
 
 const
   renderEffect = (effect) => {
+    renderSelectionEffect(effect.classList[1].slice(18));
     const currentEffect = effect.classList[1];
     imagePreview.classList = {};
     imagePreview.classList.add(currentEffect);
     for (effect in effectsStyle) {
       if (currentEffect.includes(effect)) {
-        formInputEffect.value = effect;
         updateSlider(effectsStyle[effect]);
         showSlider(effectsSlider);
         break;
