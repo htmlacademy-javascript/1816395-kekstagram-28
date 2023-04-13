@@ -1,10 +1,10 @@
 import { util } from './util.js';
-import { evtHandler } from './handlerEvt.js';
+import { evtHandler } from './handler_evt.js';
 import {
   classModalBigImage,
   modalBigImageElement,
   mainElements,
-  modalBigImageElementWrap } from './elementsSettings.js';
+  modalBigImageElementWrap } from './elements_settings.js';
 
 
 let currentPicture;

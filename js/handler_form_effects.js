@@ -1,7 +1,11 @@
-import { effectsElement, effectWrap, effectsPreviewClass } from './elementsSettings.js';
-import { evtHandler } from './handlerEvt.js';
+import {
+  effectsElement,
+  effectWrap,
+  effectsPreviewClass,
+  formElement
+} from './elements_settings.js';
+import { evtHandler } from './handler_evt.js';
 import { util } from './util.js';
-import { formElement } from './elementsSettings.js';
 
 const
   formInputEffect = formElement.formEffectInput,

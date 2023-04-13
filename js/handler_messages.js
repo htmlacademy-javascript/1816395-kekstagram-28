@@ -4,11 +4,11 @@ import {
   templateUpload,
   templateUploadClass,
   templateSuccess,
-  templateSuccessClass
-} from './elementsSettings.js';
+  templateSuccessClass,
+  mainElements
+} from './elements_settings.js';
 import { util } from './util.js';
-import { mainElements } from './elementsSettings.js';
-import { evtHandler } from './handlerEvt.js';
+import { evtHandler } from './handler_evt.js';
 
 const
   body = mainElements.body,

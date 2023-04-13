@@ -1,7 +1,13 @@
-import { formElement } from './elementsSettings.js';
-import { evtHandler } from './handlerEvt.js';
+import { formElement } from './elements_settings.js';
+import { evtHandler } from './handler_evt.js';
 import { sendData } from './api.js';
-import { eraseMessage, generateErrorLoadMessage, generateUploadMessage, getUploadElementMessage, generateSuccessMessage } from './handlerMessages.js';
+import {
+  eraseMessage,
+  generateErrorLoadMessage,
+  generateUploadMessage,
+  getUploadElementMessage,
+  generateSuccessMessage
+} from './handler_messages.js';
 
 
 const
