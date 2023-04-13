@@ -37,7 +37,7 @@ const eraseMessage = (wrapTemplate = null, containerTemplate = null) => function
   if (wrapTemplate) {
     body.removeChild(wrapTemplate);
     util.closeModal('', body);
-    wrapTemplate = null
+    wrapTemplate = null;
   }
 };
 
