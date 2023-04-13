@@ -12,7 +12,7 @@ const generatePictureElement = (className, parent, { url, description, id }) => 
   picture.src = url;
   picture.alt = description;
   picture.dataset.pictureId = id;
-  thumbnailElement.container.appendChild(picture);
+  thumbnailElement.container.appendChild(parent);
 };
 
 const generatePictureComments = (className, parent, { comments }) => {
