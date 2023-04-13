@@ -28,6 +28,7 @@ const eraseMessage = (wrapTemplate = null, containerTemplate = null) => function
     wrapTemplate = getOpenMessage();
   }
   if (containerTemplate) {
+    debugger
     evtHandler.removeListener(
       containerTemplate,
       'click',
