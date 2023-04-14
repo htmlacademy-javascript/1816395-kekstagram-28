@@ -12,7 +12,7 @@ const evtHandler = {
     });
   },
   onClickLocal: function (element, func) {
-    element.addEventListener('click', func, true);
+    element.addEventListener('click', func, false);
   },
   onChange: function (element, func, className) {
     element.addEventListener('change', (evt) => {
@@ -41,7 +41,7 @@ const evtHandler = {
     });
   },
   removeListener: function (element, listener, func) {
-    element.removeEventListener(listener, func);
+    element.removeEventListener(listener, func,false);
   },
 };
 

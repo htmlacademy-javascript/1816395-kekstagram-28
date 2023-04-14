@@ -1,8 +1,8 @@
 import { util } from './util.js';
-import { mainElements, modalForm, formElement } from './elementsSettings.js';
-import { evtHandler } from './handlerEvt.js';
-import { resetScale } from './handlerScale.js';
-import { handlerFormEffects } from './handlerFormEffects.js';
+import { mainElements, modalForm, formElement } from './elements_settings.js';
+import { evtHandler } from './handler_evt.js';
+import { resetScale } from './handler_scale.js';
+import { handlerFormEffects } from './handler_form_effects.js';
 
 
 const

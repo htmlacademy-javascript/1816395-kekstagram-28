@@ -198,7 +198,8 @@ const effectsElement = {
   effectsSlider: getElement(
     effectsPreviewClass.sliderEffectsClass,
     modalForm
-  )
+  ),
+  effectInputs: getElements('input', effectWrap)
 };
 
 const

@@ -1,10 +1,10 @@
 import { util } from './util.js';
-import { evtHandler } from './handlerEvt.js';
+import { evtHandler } from './handler_evt.js';
 import {
   classModalBigImage,
   modalBigImageElement,
   mainElements,
-  modalBigImageElementWrap } from './elementsSettings.js';
+  modalBigImageElementWrap } from './elements_settings.js';
 
 
 let currentPicture;
@@ -35,7 +35,7 @@ const takeData = (data) => {
 
   const renderComments = (comments) => {
     const content = modalBigImageElement.imageComments;
-    data.innerHTML = '';
+    content.innerHTML = '';
     comments.forEach((comment) => {
       const newComment = document.createElement('li');
       newComment.classList.add(util.filterClassName(classModalBigImage.socialComment));
@@ -53,7 +53,7 @@ const takeData = (data) => {
     modalBigImageElement.pictureElement.alt = currentPicture.alt;
     modalBigImageElement.imageLikes.textContent = currentPicture.likes;
     modalBigImageElement.imageDescription.textContent = currentPicture.description;
-    modalBigImageElement.imageComments.textContent = `${currentPicture.comments.length} из 125 комментариев`;
+    modalBigImageElement.imageCommentsCount.textContent = `${currentPicture.comments.length} из 125 комментариев`;
     renderComments(currentPicture.comments.slice(0, currentPicture.counterComments));
 
   };

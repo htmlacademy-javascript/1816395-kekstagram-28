@@ -1,25 +1,45 @@
-import { templateErrorLoad, templateErrorClass, templateUpload, templateUploadClass, templateSuccess, templateSuccessClass } from './elementsSettings.js';
+import {
+  templateErrorLoad,
+  templateErrorClass,
+  templateUpload,
+  templateUploadClass,
+  templateSuccess,
+  templateSuccessClass,
+  mainElements
+} from './elements_settings.js';
 import { util } from './util.js';
-import { mainElements } from './elementsSettings.js';
-import { evtHandler } from './handlerEvt.js';
+import { evtHandler } from './handler_evt.js';
 
 const
   body = mainElements.body,
   templateError = templateErrorLoad.template,
   templateUploading = templateUpload,
-  templateSuccession = templateSuccess;
+  templateSuccession = templateSuccess,
+  messagesClassArr = [templateErrorClass.templateWrap, templateSuccessClass.templateWrap, templateUploadClass.templateWrap];
+
+const getOpenMessage = () => {
+  const classOpenMessage = messagesClassArr.find((messageClass) => (document.querySelector(messageClass)));
+  return util.getElement(classOpenMessage, body);
+};
 
 
-const eraseMessage = (wrapTemplate, containerTemplate = null) => function erasingMessage() {
+const eraseMessage = (wrapTemplate = null, containerTemplate = null) => function erasingMessage() {
+  if (!wrapTemplate) {
+    wrapTemplate = getOpenMessage();
+  }
   if (containerTemplate) {
+    debugger
     evtHandler.removeListener(
       containerTemplate,
       'click',
       eraseMessage,
     );
   }
-  body.removeChild(wrapTemplate);
-  util.closeModal('', body);
+  if (wrapTemplate) {
+    body.removeChild(wrapTemplate);
+    util.closeModal('', body);
+    wrapTemplate = null;
+  }
 };
 
 
@@ -35,7 +55,7 @@ const renderMessage = (newElement, templateClass) => {
       containerTemplate,
       eraseMessage(wrapTemplate, containerTemplate,)
     );
-    evtHandler.onKeydown(document, util.isEscape, eraseMessage(wrapTemplate));
+
   }
 
 };
@@ -63,6 +83,7 @@ const
     generateMessage(templateSuccession, templateSuccessClass);
   };
 
+evtHandler.onKeydown(document, util.isEscape, eraseMessage());
 
 export {
   generateErrorLoadMessage,
