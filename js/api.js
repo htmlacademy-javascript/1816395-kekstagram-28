@@ -1,6 +1,6 @@
-import { setUserFormSubmit } from './handler_form_validator.js';
-import { closeModalForm } from './render_upload.js';
-import { mainElements } from './elements_settings.js';
+import { setUserFormSubmit } from './handler-form-validator.js';
+import { closeModalForm } from './render-upload.js';
+import { mainElements } from './elements-settings.js';
 import { util } from './util.js';
 
 

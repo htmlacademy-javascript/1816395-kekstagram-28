@@ -6,9 +6,9 @@ import {
   templateSuccess,
   templateSuccessClass,
   mainElements
-} from './elements_settings.js';
+} from './elements-settings.js';
 import { util } from './util.js';
-import { evtHandler } from './handler_evt.js';
+import { evtHandler } from './handler-evt.js';
 
 const
   body = mainElements.body,

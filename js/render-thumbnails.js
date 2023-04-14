@@ -1,10 +1,10 @@
-import './render_big_image.js';
-import './render_upload.js';
-import './handler_scale.js';
-import './handler_form_effects.js';
+import './render-big-image.js';
+import './render-upload.js';
+import './handler-scale.js';
+import './handler-form-effects.js';
 import { util } from './util.js';
-import { thumbnailElement, templateClass } from './elements_settings.js';
-import { filterMethods } from './handler_filters.js';
+import { thumbnailElement, templateClass } from './elements-settings.js';
+import { filterMethods } from './handler-filters.js';
 
 
 const generatePictureElement = (className, parent, { url, description, id }) => {
