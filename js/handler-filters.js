@@ -1,6 +1,6 @@
-import { filtersClass, filterSection, filterElements, mainElements } from './elements_settings.js';
-import { evtHandler } from './handler_evt.js';
-import { generateDomThumbnails } from './render_thumbnails.js';
+import { filtersClass, filterSection, filterElements, mainElements } from './elements-settings.js';
+import { evtHandler } from './handler-evt.js';
+import { generateDomThumbnails } from './render-thumbnails.js';
 import { util } from './util.js';
 
 let serverData;

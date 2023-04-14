@@ -1,6 +1,6 @@
-import { evtHandler } from './handler_evt.js';
-import { scaleElement } from './elements_settings.js';
-import { imagePreview } from './render_upload.js';
+import { evtHandler } from './handler-evt.js';
+import { scaleElement } from './elements-settings.js';
+import { imagePreview } from './render-upload.js';
 
 const
   scaleUp = scaleElement.scaleUp,

@@ -3,8 +3,8 @@ import {
   effectWrap,
   effectsPreviewClass,
   formElement
-} from './elements_settings.js';
-import { evtHandler } from './handler_evt.js';
+} from './elements-settings.js';
+import { evtHandler } from './handler-evt.js';
 import { util } from './util.js';
 
 const
