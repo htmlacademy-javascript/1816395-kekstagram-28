@@ -35,13 +35,16 @@ const evtHandler = {
       }
       , true);
   },
+  onKeydownSimple: function (element, func) {
+    element.addEventListener('keydown', func, true);
+  },
   onSubmit: function (form, func) {
     form.addEventListener('submit', (evt) => {
       func(evt);
     });
   },
   removeListener: function (element, listener, func) {
-    element.removeEventListener(listener, func,false);
+    element.removeEventListener(listener, func, false);
   },
 };
 

@@ -28,9 +28,21 @@ const closeModalForm = () => {
   imagePreview.src = '';
 };
 
-evtHandler.onChange(mainElements.main, openModalForm);
-evtHandler.onClick(previewBtnCancel, closeModalForm);
-evtHandler.onKeydown(previewBtnCancel, util.isEnter, closeModalForm);
-evtHandler.onKeydown(document, util.isEscape, closeModalForm);
+const closeModalFormOnEnter = (evt) => {
+  if (util.isEnter(evt)) {
+    closeModalForm();
+  }
+};
+
+const closeModalFormOnEsc = (evt) => {
+  if (util.isEscape(evt)) {
+    closeModalForm();
+  }
+};
+
+evtHandler.onChange(uploadFile, openModalForm);
+evtHandler.onClickLocal(previewBtnCancel, closeModalForm);
+evtHandler.onKeydownSimple(previewBtnCancel, closeModalFormOnEnter);
+evtHandler.onKeydown(mainElements.body, closeModalFormOnEsc);
 
 export { imagePreview, modalForm, openModalForm, closeModalForm };

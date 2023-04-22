@@ -15,17 +15,21 @@ const
   templateError = templateErrorLoad.template,
   templateUploading = templateUpload,
   templateSuccession = templateSuccess,
-  messagesClassArr = [templateErrorClass.templateWrap, templateSuccessClass.templateWrap, templateUploadClass.templateWrap];
+  messagesClassArr = [templateErrorClass.templateWrap, templateSuccessClass.templateWrap, templateUploadClass.templateWrap],
+  messagesContainerClassArr = [templateErrorClass.templateContainer, templateSuccessClass.templateContainer, templateUploadClass.containerTemplate];
 
-const getOpenMessage = () => {
-  const classOpenMessage = messagesClassArr.find((messageClass) => (document.querySelector(messageClass)));
+const findOpenMessage = (arrClass) => {
+  const classOpenMessage = arrClass.find((messageClass) => (document.querySelector(messageClass)));
   return util.getElement(classOpenMessage, body);
 };
 
 
 const eraseMessage = (wrapTemplate = null, containerTemplate = null) => function erasingMessage() {
   if (!wrapTemplate) {
-    wrapTemplate = getOpenMessage();
+    wrapTemplate = findOpenMessage(messagesClassArr);
+  }
+  if (!containerTemplate) {
+    containerTemplate = findOpenMessage(messagesContainerClassArr);
   }
   if (containerTemplate) {
     evtHandler.removeListener(
@@ -37,10 +41,16 @@ const eraseMessage = (wrapTemplate = null, containerTemplate = null) => function
   if (wrapTemplate) {
     body.removeChild(wrapTemplate);
     util.closeModal('', body);
+
     wrapTemplate = null;
   }
 };
 
+const eraseMessageOnEsc = (evt) => {
+  if (util.isEscape(evt)) {
+    eraseMessage()();
+  }
+};
 
 const renderMessage = (newElement, templateClass) => {
   body.appendChild(newElement);
@@ -52,11 +62,9 @@ const renderMessage = (newElement, templateClass) => {
   if (containerTemplate) {
     evtHandler.onClickLocal(
       containerTemplate,
-      eraseMessage(wrapTemplate, containerTemplate,)
+      eraseMessage(wrapTemplate, containerTemplate)
     );
-
   }
-
 };
 
 
@@ -82,8 +90,7 @@ const
     generateMessage(templateSuccession, templateSuccessClass);
   };
 
-evtHandler.onKeydown(document, util.isEscape, eraseMessage());
-
+evtHandler.onKeydownSimple(mainElements.body, eraseMessageOnEsc);
 export {
   generateErrorLoadMessage,
   generateUploadMessage,

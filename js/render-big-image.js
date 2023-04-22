@@ -4,11 +4,14 @@ import {
   classModalBigImage,
   modalBigImageElement,
   mainElements,
-  modalBigImageElementWrap } from './elements-settings.js';
+  modalBigImageElementWrap
+} from './elements-settings.js';
 
 
 let currentPicture;
-
+const bigImageContainerClass = util.filterClassName(classModalBigImage.image),
+  bigImageCloseButton = modalBigImageElement.imageCloseButton,
+  btnLoadComments = modalBigImageElement.imageCommentsLoaderButton;
 
 const takeData = (data) => {
   const DATA = data;
@@ -65,20 +68,36 @@ const takeData = (data) => {
 
   const closeBigImage = () => {
     util.closeModal(modalBigImageElementWrap, mainElements.body);
+
+  };
+
+  const closeOnKeyEnter = (evt) => {
+    if (util.isEscape(evt)) {
+      closeBigImage();
+    }
+  };
+
+  const closeOnKeyEsc = (evt) => {
+    if (util.isEscape(evt)) {
+      closeBigImage();
+    }
   };
 
 
-  const openBigImage = (thumbnail) => {
-    renderBigImage(util.getCurrentPicture(DATA, thumbnail));
-    util.openModal(modalBigImageElementWrap, mainElements.body);
+  const openBigImage = (evt) => {
+    const thumbnail = evt.target;
+    if (util.testEventTarget(evt, bigImageContainerClass)) {
+      renderBigImage(util.getCurrentPicture(DATA, thumbnail));
+      util.openModal(modalBigImageElementWrap, mainElements.body);
+    }
   };
 
-  evtHandler.onClick(mainElements.main, openBigImage, util.filterClassName(classModalBigImage.image));
-  evtHandler.onClick(modalBigImageElement.imageCloseButton, closeBigImage);
-  evtHandler.onKeydown(modalBigImageElement.imageCloseButton, util.isEnter, closeBigImage);
-  evtHandler.onKeydown(document, util.isEscape, closeBigImage);
-  evtHandler.onClick(modalBigImageElement.imageCommentsLoaderButton, updateComments);
+  evtHandler.onClickLocal(mainElements.body, openBigImage);
+  evtHandler.onClickLocal(bigImageCloseButton, closeBigImage);
+  evtHandler.onClickLocal(btnLoadComments, updateComments);
 
+  evtHandler.onKeydownSimple(mainElements.body, closeOnKeyEsc);
+  evtHandler.onKeydownSimple(bigImageCloseButton, closeOnKeyEnter);
 };
 
 export { takeData };
