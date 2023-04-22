@@ -96,6 +96,12 @@ const util = {
         lastTime = now;
       }
     };
+  },
+  testEventTarget: function (evt, className) {
+    if (evt.target.classList.contains(className)) {
+      evt.preventDefault();
+      return true;
+    }
   }
 };
 

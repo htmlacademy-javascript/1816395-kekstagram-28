@@ -115,24 +115,29 @@ const renderSelectionEffect = (effect) => {
 };
 
 const
-  renderEffect = (effect) => {
-    renderSelectionEffect(effect.classList[1].slice(18));
-    const currentEffect = effect.classList[1];
-    imagePreview.classList = {};
-    imagePreview.classList.add(currentEffect);
-    for (effect in effectsStyle) {
-      if (currentEffect.includes(effect)) {
-        updateSlider(effectsStyle[effect]);
-        showSlider(effectsSlider);
-        break;
-      } else {
-        formInputEffect.value = 'none';
-        hideSlider(effectsSlider);
-        imagePreview.style = 'filter:';
+  renderEffect = (evt) => {
+    let effect = evt.target;
+    if (util.testEventTarget(evt,util.filterClassName(effectClass))){
+      renderSelectionEffect(effect.classList[1].slice(18));
+      const currentEffect = effect.classList[1];
+      imagePreview.classList = {};
+      imagePreview.classList.add(currentEffect);
+      for (effect in effectsStyle) {
+        if (currentEffect.includes(effect)) {
+          updateSlider(effectsStyle[effect]);
+          showSlider(effectsSlider);
+          break;
+        } else {
+          formInputEffect.value = 'none';
+          hideSlider(effectsSlider);
+          imagePreview.style = 'filter:';
+        }
       }
     }
+
   };
 hideSlider(effectsSlider);
-evtHandler.onClick(effectWrap, renderEffect, util.filterClassName(effectClass));
+evtHandler.onClickLocal(effectWrap, renderEffect);
+
 
 export { handlerFormEffects };
