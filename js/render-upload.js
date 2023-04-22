@@ -43,6 +43,6 @@ const closeModalFormOnEsc = (evt) => {
 evtHandler.onChange(uploadFile, openModalForm);
 evtHandler.onClickLocal(previewBtnCancel, closeModalForm);
 evtHandler.onKeydownSimple(previewBtnCancel, closeModalFormOnEnter);
-evtHandler.onKeydown(mainElements.body, closeModalFormOnEsc);
+evtHandler.onKeydownSimple(mainElements.body, closeModalFormOnEsc);
 
 export { imagePreview, modalForm, openModalForm, closeModalForm };

@@ -25,16 +25,6 @@ const evtHandler = {
     });
   }
   ,
-  onKeydown: function (element, testFunc, func) {
-    element.addEventListener('keydown',
-      (evt) => {
-        if (testFunc(evt)) {
-          evt.stopPropagation();
-          func();
-        }
-      }
-      , true);
-  },
   onKeydownSimple: function (element, func) {
     element.addEventListener('keydown', func, true);
   },
